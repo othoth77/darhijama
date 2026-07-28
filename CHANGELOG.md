@@ -4,6 +4,16 @@ Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
 ## [Unreleased]
 
+### Phase 2.2 — Invitations Production Completion (2026-07-28)
+
+- Finalisation du cycle brouillon, publication, archive et restauration avec validation centralisée.
+- Ajout de l’aperçu signé, duplication, régénération QR et actions Filament complètes.
+- Ajout de l’édition du programme, de la galerie, de l’audio, de la vidéo et des informations publiques.
+- Durcissement des URLs externes, médias manquants, cache et invalidation.
+- Protection RSVP par rate limiting, honeypot, déduplication et correction sûre.
+- Ajout des notifications RSVP administratives, permissions et couverture Phase 2.2.
+- Suite complète validée sur la base SQLite dédiée aux tests.
+
 ### Phase 2.1 — Landing & Templates Completion (2026-07-28)
 
 - Connexion de Landing au catalogue actif via `App\\Contracts\\Templates\\TemplateCatalog`.

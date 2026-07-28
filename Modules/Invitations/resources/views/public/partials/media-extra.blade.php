@@ -12,6 +12,15 @@
     </section>
 @endif
 
+@if (! $videoUrl && $externalVideoUrl)
+    <div class="mx-auto max-w-3xl px-6 pb-10 text-center">
+        <a href="{{ $externalVideoUrl }}" target="_blank" rel="noopener noreferrer"
+           class="inline-flex rounded-full border border-brand-charcoal/20 px-5 py-2.5 text-sm font-medium">
+            Voir la vidéo
+        </a>
+    </div>
+@endif
+
 @if ($musicUrl)
     <div
         x-data="{ playing: false }"
@@ -29,5 +38,14 @@
             <x-heroicon-o-pause class="h-6 w-6" x-show="playing" x-cloak aria-hidden="true" />
             <x-heroicon-o-play class="h-6 w-6" x-show="!playing" aria-hidden="true" />
         </button>
+    </div>
+@endif
+
+@if (! $musicUrl && $externalAudioUrl)
+    <div class="mx-auto max-w-3xl px-6 pb-10 text-center">
+        <a href="{{ $externalAudioUrl }}" target="_blank" rel="noopener noreferrer"
+           class="inline-flex rounded-full border border-brand-charcoal/20 px-5 py-2.5 text-sm font-medium">
+            Écouter l’audio
+        </a>
     </div>
 @endif

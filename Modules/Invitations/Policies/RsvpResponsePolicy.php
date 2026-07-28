@@ -28,4 +28,9 @@ class RsvpResponsePolicy
     {
         return $user->can('invitations.manage');
     }
+
+    public function update(User $user, RsvpResponse $rsvpResponse): bool
+    {
+        return $user->can('invitations.manage');
+    }
 }

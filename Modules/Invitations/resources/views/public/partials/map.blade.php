@@ -1,12 +1,12 @@
 {{-- Carte Google Maps élégante + bouton d'ouverture externe. --}}
-@if ($invitation->maps_embed_url || ($invitation->lat && $invitation->lng))
+@if ($mapsEmbedUrl || ($invitation->lat && $invitation->lng))
     <section id="acces" aria-labelledby="acces-title" class="mx-auto max-w-4xl px-6 pb-20">
         <h2 id="acces-title" class="sr-only">Accès</h2>
 
         <div class="overflow-hidden rounded-2xl border border-brand-beige shadow-sm">
-            @if ($invitation->maps_embed_url)
+            @if ($mapsEmbedUrl)
                 <iframe
-                    src="{{ $invitation->maps_embed_url }}"
+                    src="{{ $mapsEmbedUrl }}"
                     class="h-80 w-full border-0"
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
@@ -16,7 +16,7 @@
 
             <div class="flex justify-center bg-white p-4">
                 @php
-                    $mapsHref = $invitation->maps_embed_url
+                    $mapsHref = $mapsEmbedUrl
                         ?: "https://www.google.com/maps/search/?api=1&query={$invitation->lat},{$invitation->lng}";
                 @endphp
                 <a

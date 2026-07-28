@@ -218,6 +218,8 @@ validés par la suite complète.
 
 ### 2.2 Invitations publiques
 
+**État : terminé le 2026-07-28.** Aperçu signé des brouillons, transitions centralisées, édition du programme et des médias, duplication, QR, URLs externes strictes, cache invalidable, RSVP protégé avec correction/déduplication et notifications administratives sont couverts par les tests.
+
 1. Ajouter une prévisualisation admin sécurisée des brouillons.
 2. Utiliser les services Media et QR partagés.
 3. Valider strictement Maps, vidéo, audio et autres URLs externes.

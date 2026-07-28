@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Str;
 use RuntimeException;
 
 abstract class TestCase extends BaseTestCase
@@ -32,7 +33,11 @@ abstract class TestCase extends BaseTestCase
         $connection = config('database.default');
         $database = config("database.connections.{$connection}.database");
 
-        if (! str_ends_with((string) $database, '_test')) {
+        $isDedicatedTestDatabase = $connection === 'sqlite'
+            ? Str::of((string) $database)->basename('.sqlite')->endsWith('_test')
+            : str_ends_with((string) $database, '_test');
+
+        if (! $isDedicatedTestDatabase) {
             throw new RuntimeException(
                 "Exécution des tests refusée : la connexion \"{$connection}\" pointe vers la base ".
                 "\"{$database}\", qui ne se termine pas par \"_test\".\n\n".

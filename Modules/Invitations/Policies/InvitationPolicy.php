@@ -31,4 +31,14 @@ class InvitationPolicy
     {
         return $user->can('invitations.manage');
     }
+
+    public function duplicate(User $user, Invitation $invitation): bool
+    {
+        return $user->can('invitations.manage');
+    }
+
+    public function publish(User $user, Invitation $invitation): bool
+    {
+        return $user->can('invitations.manage');
+    }
 }

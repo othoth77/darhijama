@@ -102,6 +102,7 @@ class InvitationPublicPageTest extends TestCase
             'type' => 'image',
             'order' => 1,
         ]);
+        Storage::disk('public')->put('invitations/photo-1.jpg', 'image');
 
         $response = $this->get("/i/{$invitation->public_token}");
 

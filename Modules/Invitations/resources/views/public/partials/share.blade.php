@@ -14,6 +14,16 @@
         whatsapp-source="invitation_share"
         :context="['invitation_id' => $invitation->id]"
     />
+    @if ($facebookUrl || $instagramUrl)
+        <div class="mt-6 flex justify-center gap-4">
+            @if ($facebookUrl)
+                <a href="{{ $facebookUrl }}" target="_blank" rel="noopener noreferrer" class="text-sm underline">Facebook</a>
+            @endif
+            @if ($instagramUrl)
+                <a href="{{ $instagramUrl }}" target="_blank" rel="noopener noreferrer" class="text-sm underline">Instagram</a>
+            @endif
+        </div>
+    @endif
     <div class="mt-10 inline-flex flex-col items-center gap-2">
         <x-shared.responsive-media
             :src="$qrUrl"
