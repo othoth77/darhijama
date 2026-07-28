@@ -1,0 +1,62 @@
+<?php
+
+use Spatie\Permission\DefaultTeamResolver;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
+/**
+ * Configuration explicite de spatie/laravel-permission (plutôt que de laisser
+ * le package fonctionner sur ses défauts internes non publiés — voir
+ * AUDIT_PHASE_0.md correctif C, exigence "Enterprise : aucune configuration
+ * implicite non documentée").
+ *
+ * Un seul rôle utilisé au MVP ('admin'), mais le modèle Role/Permission est
+ * posé dès le départ pour accueillir des rôles futurs (opérateur commercial,
+ * super-admin...) sans migration lourde.
+ */
+return [
+
+    'models' => [
+        'permission' => Permission::class,
+        'role' => Role::class,
+    ],
+
+    'table_names' => [
+        'roles' => 'roles',
+        'permissions' => 'permissions',
+        'model_has_permissions' => 'model_has_permissions',
+        'model_has_roles' => 'model_has_roles',
+        'role_has_permissions' => 'role_has_permissions',
+    ],
+
+    'column_names' => [
+        'role_pivot_key' => null,
+        'permission_pivot_key' => null,
+        'model_morph_key' => 'model_id',
+        'team_foreign_key' => 'team_id',
+    ],
+
+    // Enregistrement du contrôle Spatie dans Gate (requis par les Policies métier).
+    'register_permission_check_method' => true,
+
+    'register_octane_reset_listener' => false,
+    'events_enabled' => true,
+
+    'team_resolver' => DefaultTeamResolver::class,
+
+    'use_passport_client_credentials' => false,
+    // Multi-tenant / équipes désactivé au MVP (un seul back-office Notre Jour).
+    // À réévaluer si la plateforme SaaS ouvre plusieurs organisations clientes.
+    'teams' => false,
+
+    'display_permission_in_exception' => false,
+    'display_role_in_exception' => false,
+    'enable_wildcard_permission' => false,
+
+    'cache' => [
+        'expiration_time' => DateInterval::createFromDateString('24 hours'),
+        'key' => 'notre_jour.permission.cache',
+        'store' => 'default',
+    ],
+
+];

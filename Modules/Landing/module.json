@@ -1,0 +1,11 @@
+{
+    "name": "Landing",
+    "alias": "landing",
+    "description": "Page d'accueil, argumentaire et CTA WhatsApp.",
+    "keywords": [],
+    "priority": 1,
+    "providers": [
+        "Modules\\Landing\\Providers\\LandingServiceProvider"
+    ],
+    "files": []
+}

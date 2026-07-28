@@ -1,0 +1,11 @@
+{
+    "name": "Guestbook",
+    "alias": "guestbook",
+    "description": "Livre d'or numerique.",
+    "keywords": [],
+    "priority": 11,
+    "providers": [
+        "Modules\\Guestbook\\Providers\\GuestbookServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Singles",
+    "alias": "singles",
+    "description": "Module hors mariage, perimetre a definir ulterieurement. Structure vide uniquement.",
+    "keywords": [],
+    "priority": 15,
+    "providers": [
+        "Modules\\Singles\\Providers\\SinglesServiceProvider"
+    ],
+    "files": []
+}

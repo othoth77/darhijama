@@ -1,0 +1,11 @@
+{
+    "name": "Orders",
+    "alias": "orders",
+    "description": "Suivi des commandes creees manuellement par les operateurs.",
+    "keywords": [],
+    "priority": 3,
+    "providers": [
+        "Modules\\Orders\\Providers\\OrdersServiceProvider"
+    ],
+    "files": []
+}

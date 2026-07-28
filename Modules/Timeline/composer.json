@@ -1,0 +1,20 @@
+{
+    "name": "notrejour/timeline",
+    "description": "Deroule de la journee / histoire du couple.",
+    "type": "laravel-module",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Timeline\\": "",
+            "Modules\\Timeline\\Database\\Factories\\": "Database/Factories/",
+            "Modules\\Timeline\\Database\\Seeders\\": "Database/Seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "_note": "Fichier conserve pour reference/future adoption de wikimedia/composer-merge-plugin. Non utilise actuellement : l'autoload reel passe par le mapping racine \"Modules\\\\\": \"Modules/\" dans /composer.json (voir AUDIT_PHASE_0.md, correctif A)."
+}

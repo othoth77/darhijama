@@ -1,0 +1,11 @@
+{
+    "name": "Timeline",
+    "alias": "timeline",
+    "description": "Deroule de la journee / histoire du couple.",
+    "keywords": [],
+    "priority": 12,
+    "providers": [
+        "Modules\\Timeline\\Providers\\TimelineServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Media",
+    "alias": "media",
+    "description": "Upload, optimisation et stockage S3 des medias (infrastructure active des le MVP).",
+    "keywords": [],
+    "priority": 5,
+    "providers": [
+        "Modules\\Media\\Providers\\MediaServiceProvider"
+    ],
+    "files": []
+}

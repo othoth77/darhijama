@@ -1,0 +1,11 @@
+{
+    "name": "Api",
+    "alias": "api",
+    "description": "API REST publique (Sanctum) pour integrations tierces.",
+    "keywords": [],
+    "priority": 16,
+    "providers": [
+        "Modules\\Api\\Providers\\ApiServiceProvider"
+    ],
+    "files": []
+}

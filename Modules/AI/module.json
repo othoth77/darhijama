@@ -1,0 +1,11 @@
+{
+    "name": "AI",
+    "alias": "ai",
+    "description": "Generation et retouche assistees par IA (Album IA).",
+    "keywords": [],
+    "priority": 14,
+    "providers": [
+        "Modules\\AI\\Providers\\AIServiceProvider"
+    ],
+    "files": []
+}

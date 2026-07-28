@@ -1,0 +1,72 @@
+name: CI
+
+# Pipeline volontairement minimal en Phase 0.5 (hygiène de base uniquement) :
+# aucune logique métier n'existe encore (voir ROADMAP.md, Phase 1 à venir).
+# À enrichir en Phase 5 (tests Feature, analyse statique Larastan, audit
+# sécurité) sans changer la structure de ce fichier.
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_DATABASE: notrejour_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: mbstring, xml, curl, zip, gd, pdo_mysql, bcmath
+          coverage: none
+
+      - name: Valider composer.json
+        run: composer validate --strict --no-check-publish
+
+      - name: Installer les dépendances PHP
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Préparer l'environnement de test
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Vérifier le style (Pint)
+        run: vendor/bin/pint --test
+
+      - name: Lister les modules (sanity check du scaffolding)
+        run: php artisan module:list
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Installer les dépendances front
+        run: npm ci
+
+      - name: Build front-end
+        run: npm run build
+
+      - name: Exécuter la suite de tests
+        run: php artisan test

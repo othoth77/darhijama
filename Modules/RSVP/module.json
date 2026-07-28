@@ -1,0 +1,11 @@
+{
+    "name": "RSVP",
+    "alias": "rsvp",
+    "description": "Confirmation de presence des invites.",
+    "keywords": [],
+    "priority": 10,
+    "providers": [
+        "Modules\\RSVP\\Providers\\RSVPServiceProvider"
+    ],
+    "files": []
+}

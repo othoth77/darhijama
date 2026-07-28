@@ -1,0 +1,20 @@
+{
+    "name": "notrejour/media",
+    "description": "Upload, optimisation et stockage S3 des medias (infrastructure active des le MVP).",
+    "type": "laravel-module",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Media\\": "",
+            "Modules\\Media\\Database\\Factories\\": "Database/Factories/",
+            "Modules\\Media\\Database\\Seeders\\": "Database/Seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "_note": "Fichier conserve pour reference/future adoption de wikimedia/composer-merge-plugin. Non utilise actuellement : l'autoload reel passe par le mapping racine \"Modules\\\\\": \"Modules/\" dans /composer.json (voir AUDIT_PHASE_0.md, correctif A)."
+}

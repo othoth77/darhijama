@@ -1,0 +1,15 @@
+{
+    "Landing": true,
+    "Templates": true,
+    "Orders": true,
+    "Invitations": true,
+    "Admin": true,
+    "Media": true,
+    "RSVP": false,
+    "Guestbook": false,
+    "Timeline": false,
+    "Notifications": false,
+    "AI": false,
+    "Singles": false,
+    "Api": false
+}

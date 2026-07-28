@@ -1,0 +1,11 @@
+{
+    "name": "Invitations",
+    "alias": "invitations",
+    "description": "Creation, publication et affichage public des invitations.",
+    "keywords": [],
+    "priority": 4,
+    "providers": [
+        "Modules\\Invitations\\Providers\\InvitationsServiceProvider"
+    ],
+    "files": []
+}

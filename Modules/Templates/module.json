@@ -1,0 +1,11 @@
+{
+    "name": "Templates",
+    "alias": "templates",
+    "description": "Galerie de modeles d'invitations et pages de demonstration.",
+    "keywords": [],
+    "priority": 2,
+    "providers": [
+        "Modules\\Templates\\Providers\\TemplatesServiceProvider"
+    ],
+    "files": []
+}
