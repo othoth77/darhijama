@@ -2,8 +2,8 @@
 
 namespace Modules\Invitations\Policies;
 
-use App\Models\User;
 use Modules\Invitations\Models\Invitation;
+use Mythos\Core\Identity\Models\User;
 
 class InvitationPolicy
 {

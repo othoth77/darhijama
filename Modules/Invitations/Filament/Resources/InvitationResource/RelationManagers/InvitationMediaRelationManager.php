@@ -12,8 +12,8 @@ use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
-use Modules\Media\Models\Media;
-use Modules\Media\Services\MediaService;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
+use Mythos\Core\Media\Models\Media;
 
 class InvitationMediaRelationManager extends RelationManager
 {
@@ -44,7 +44,11 @@ class InvitationMediaRelationManager extends RelationManager
                             'audio' => 'Audio',
                             'video' => 'Vidéo',
                         ])->required()->live(),
-                        FileUpload::make('upload')->label('Fichier')->storeFiles(false)->required(),
+                        FileUpload::make('upload')
+                            ->label('Fichier')
+                            ->storeFiles(false)
+                            ->maxSize(102400)
+                            ->required(),
                         TextInput::make('order')->numeric()->default(0)->required(),
                     ])
                     ->using(function (array $data): Media {

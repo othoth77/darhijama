@@ -1,0 +1,4 @@
+name: dar-hijama-production
+
+include:
+  - path: docker-compose.staging.yml

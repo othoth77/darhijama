@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Modules\Invitations\Models\Invitation;
-use Modules\Media\Models\Media;
-use Modules\Media\Policies\MediaPolicy;
-use Modules\Media\Services\MediaService;
 use Modules\Templates\Models\Template;
+use Mythos\Core\Media\Models\Media;
+use Mythos\Core\Media\Policies\MediaPolicy;
 
 /**
  * Module core (MVP) — toujours actif, aucun Feature Flag requis.
@@ -31,7 +30,7 @@ class MediaServiceProvider extends ServiceProvider
         // (voir PHASE_1.md §1, table media). morphMap() (et non enforceMorphMap())
         // délibérément : la version "enforce" impose l'alias à TOUTE relation
         // polymorphe de l'application, y compris celles de spatie/laravel-permission
-        // (model_has_roles sur App\Models\User) qui n'ont pas à connaître notre
+        // (model_has_roles sur Mythos\Core\Identity\Models\User) qui n'ont pas à connaître notre
         // convention — voir correctif VPS du 2026-07-19.
         Relation::morphMap([
             'template' => Template::class,
@@ -47,7 +46,6 @@ class MediaServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(module_path($this->name, 'config/config.php'), $this->nameLower);
 
-        $this->app->singleton(MediaService::class);
     }
 
     /**

@@ -1,0 +1,70 @@
+{
+    "name": "Dar Hijama",
+    "slug": "dar-hijama",
+    "namespace": "Applications\\DarHijama\\",
+    "version": "1.0.0",
+    "description": "Patient and appointment management for a professional Hijama practice.",
+    "application_class": "Applications\\DarHijama\\Application",
+    "service_provider": "Applications\\DarHijama\\Providers\\DarHijamaServiceProvider",
+    "core_capabilities": [
+        "identity",
+        "authorization",
+        "media",
+        "notifications",
+        "analytics",
+        "audit",
+        "shared-ui"
+    ],
+    "permissions": [
+        "dar-hijama.access",
+        "dar-hijama.patients.manage",
+        "dar-hijama.practitioners.manage",
+        "dar-hijama.appointments.manage",
+        "dar-hijama.settings.manage",
+        "dar-hijama.patients.view",
+        "dar-hijama.patients.create",
+        "dar-hijama.patients.update",
+        "dar-hijama.patients.view-private-notes",
+        "dar-hijama.patients.duplicate-override",
+        "dar-hijama.appointments.view",
+        "dar-hijama.appointments.create",
+        "dar-hijama.appointments.update",
+        "dar-hijama.appointments.assign",
+        "dar-hijama.appointments.confirm",
+        "dar-hijama.appointments.cancel",
+        "dar-hijama.appointments.reschedule",
+        "dar-hijama.appointments.start",
+        "dar-hijama.appointments.complete",
+        "dar-hijama.appointments.view-private-notes",
+        "dar-hijama.practitioner-availability.manage",
+        "dar-hijama.reports.view",
+        "dar-hijama.patients.export"
+    ],
+    "routes": [
+        {
+            "path": "routes/web.php",
+            "middleware": ["web"]
+        }
+    ],
+    "migrations": ["database/migrations"],
+    "config": [
+        {
+            "key": "applications.dar-hijama",
+            "path": "config/application.php"
+        }
+    ],
+    "view_namespace": "dar-hijama",
+    "views": "resources/views",
+    "translations": "resources/lang",
+    "commands": [
+        "Applications\\DarHijama\\Application\\Console\\InstallDarHijamaCommand",
+        "Applications\\DarHijama\\Application\\Console\\DispatchRemindersCommand",
+        "Applications\\DarHijama\\Application\\Console\\HealthHeartbeatCommand",
+        "Applications\\DarHijama\\Application\\Console\\ReconcileMediaCommand"
+    ],
+    "event_listeners": [],
+    "assets": [],
+    "compatibility": {
+        "mythos_core": "^1.0"
+    }
+}

@@ -2,10 +2,8 @@
 
 namespace Modules\Invitations\Http\Controllers;
 
-use App\Analytics\VisitorFingerprint;
 use App\Events\InvitationViewed;
 use App\Events\PublicPageViewed;
-use App\Support\WhatsApp\WhatsAppLinkBuilder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,6 +17,8 @@ use Modules\Invitations\Services\InvitationPublicCache;
 use Modules\Invitations\Services\InvitationPublicLinkService;
 use Modules\Invitations\Services\InvitationQrCodeService;
 use Modules\Invitations\Services\SubmitRsvpService;
+use Mythos\Core\Analytics\VisitorFingerprint;
+use Mythos\Core\WhatsApp\WhatsAppLinkBuilder;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
@@ -91,7 +91,7 @@ class InvitationPublicController extends Controller
         $data = $request->validate([
             'status' => ['required', Rule::enum(RsvpStatus::class)],
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:30'],
+            'phone' => ['nullable', 'string', 'max:30', 'regex:/^\+?[0-9][0-9\s().-]{5,28}[0-9]$/'],
             'guests_count' => ['nullable', 'integer', 'min:0', 'max:20'],
             'comment' => ['nullable', 'string', 'max:1000'],
             'website' => ['nullable', 'max:0'],

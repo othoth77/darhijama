@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Analytics\VisitorFingerprint;
 use App\Events\WhatsappClicked;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Mythos\Core\Analytics\VisitorFingerprint;
 
 class AnalyticsController extends Controller
 {

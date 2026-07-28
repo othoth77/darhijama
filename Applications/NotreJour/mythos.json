@@ -1,0 +1,39 @@
+{
+    "name": "Notre Jour",
+    "slug": "notre-jour",
+    "namespace": "Applications\\NotreJour\\",
+    "version": "1.0.0",
+    "description": "Digital wedding invitation application built on Mythos OS.",
+    "application_class": "Applications\\NotreJour\\Application",
+    "service_provider": "Applications\\NotreJour\\Providers\\NotreJourServiceProvider",
+    "core_capabilities": [
+        "identity",
+        "authorization",
+        "media",
+        "notifications",
+        "analytics",
+        "audit",
+        "public-links",
+        "qr",
+        "whatsapp",
+        "shared-ui"
+    ],
+    "permissions": [
+        "templates.manage",
+        "orders.manage",
+        "invitations.manage",
+        "media.manage"
+    ],
+    "routes": [],
+    "migrations": [],
+    "config": [],
+    "view_namespace": "notre-jour",
+    "views": null,
+    "translations": null,
+    "commands": [],
+    "event_listeners": [],
+    "assets": [],
+    "compatibility": {
+        "mythos_core": "^1.0"
+    }
+}

@@ -1,0 +1,60 @@
+name: Staging deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Deploy the selected commit or roll back to a known-good commit
+        required: true
+        default: deploy
+        type: choice
+        options:
+          - deploy
+          - rollback
+      commit:
+        description: Commit SHA; required for rollback, defaults to the workflow commit for deploy
+        required: false
+        type: string
+
+concurrency:
+  group: mythos-staging-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    environment: staging
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select immutable release
+        id: release
+        shell: bash
+        run: |
+          if [[ "${{ inputs.action }}" == "rollback" && -z "${{ inputs.commit }}" ]]; then
+            echo "A known-good commit SHA is required for rollback." >&2
+            exit 1
+          fi
+          echo "sha=${{ inputs.commit || github.sha }}" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Coolify deployment
+        env:
+          COOLIFY_API_URL: ${{ secrets.COOLIFY_API_URL }}
+          COOLIFY_API_TOKEN: ${{ secrets.COOLIFY_API_TOKEN }}
+          COOLIFY_RESOURCE_UUID: ${{ secrets.COOLIFY_RESOURCE_UUID }}
+        run: |
+          chmod +x ops/staging/coolify-deploy.sh
+          ops/staging/coolify-deploy.sh "${{ steps.release.outputs.sha }}"
+
+      - name: Verify staging health and security
+        env:
+          STAGING_URL: ${{ vars.STAGING_URL }}
+        run: |
+          curl --fail --show-error --silent --max-time 20 "$STAGING_URL/up"
+          curl --fail --show-error --silent --max-time 30 "$STAGING_URL/mythos/dar-hijama/ready"
+          headers="$(curl --fail --show-error --silent --head --max-time 20 "$STAGING_URL")"
+          grep -qi '^strict-transport-security:' <<< "$headers"
+          grep -qi '^content-security-policy:' <<< "$headers"
+          grep -qi '^permissions-policy:' <<< "$headers"

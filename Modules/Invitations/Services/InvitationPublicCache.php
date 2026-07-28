@@ -4,7 +4,7 @@ namespace Modules\Invitations\Services;
 
 use Illuminate\Support\Facades\Cache;
 use Modules\Invitations\Models\Invitation;
-use Modules\Media\Services\MediaService;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
 use Throwable;
 
 class InvitationPublicCache

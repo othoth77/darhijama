@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Modules\Templates\Database\Seeders\TemplatesDatabaseSeeder;
+use Mythos\Core\Identity\Models\User;
+use RuntimeException;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -17,6 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $adminPassword = env('ADMIN_PASSWORD', 'change-me-immediately');
+
+        if (app()->isProduction() && $adminPassword === 'change-me-immediately') {
+            throw new RuntimeException(
+                'ADMIN_PASSWORD must be explicitly configured before production seeding.'
+            );
+        }
+
         $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
 
         $permissions = [
@@ -36,7 +45,7 @@ class DatabaseSeeder extends Seeder
             ['email' => env('ADMIN_EMAIL', 'admin@notrejour.tn')],
             [
                 'name' => 'Notre Jour Admin',
-                'password' => bcrypt(env('ADMIN_PASSWORD', 'change-me-immediately')),
+                'password' => bcrypt($adminPassword),
             ]
         );
 

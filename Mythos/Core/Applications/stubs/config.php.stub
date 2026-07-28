@@ -1,0 +1,6 @@
+<?php
+
+return [
+    'name' => '{{ application }}',
+    'slug' => '{{ slug }}',
+];

@@ -2,9 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Audit\AuditAction;
-use App\Audit\Models\AuditLog;
-use App\Models\User;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +15,9 @@ use Modules\Invitations\Enums\InvitationStatus;
 use Modules\Invitations\Models\Invitation;
 use Modules\Invitations\Services\PublishInvitationService;
 use Modules\Orders\Models\Client;
+use Mythos\Core\Audit\AuditAction;
+use Mythos\Core\Audit\Models\AuditLog;
+use Mythos\Core\Identity\Models\User;
 use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 

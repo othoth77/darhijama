@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Modules\Invitations\Models\Invitation;
-use Modules\Media\Models\Media;
 use Modules\Orders\Models\Order;
 use Modules\Templates\Database\Factories\TemplateFactory;
+use Mythos\Core\Media\Models\Media;
 
 class Template extends Model
 {

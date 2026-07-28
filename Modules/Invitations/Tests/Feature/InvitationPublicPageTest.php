@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Modules\Invitations\Enums\InvitationStatus;
 use Modules\Invitations\Models\Invitation;
 use Modules\Invitations\Models\ProgramStep;
-use Modules\Media\Models\Media;
+use Mythos\Core\Media\Models\Media;
 use Tests\TestCase;
 
 /**

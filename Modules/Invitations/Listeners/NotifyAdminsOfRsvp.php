@@ -4,12 +4,15 @@ namespace Modules\Invitations\Listeners;
 
 use App\Events\NotificationRequested;
 use App\Events\RsvpSubmitted;
-use App\Models\User;
-use App\Notifications\NotificationMessage;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Modules\Invitations\Models\RsvpResponse;
+use Mythos\Core\Identity\Models\User;
+use Mythos\Core\Notifications\NotificationMessage;
 
-class NotifyAdminsOfRsvp
+class NotifyAdminsOfRsvp implements ShouldQueue
 {
+    public bool $afterCommit = true;
+
     public function handle(RsvpSubmitted $event): void
     {
         $response = RsvpResponse::query()->find($event->responseId);
@@ -18,9 +21,12 @@ class NotifyAdminsOfRsvp
             return;
         }
 
-        User::query()->get()
-            ->filter(fn (User $user): bool => $user->can('invitations.manage'))
-            ->each(function (User $user) use ($response): void {
+        User::query()
+            ->eachById(function (User $user) use ($response): void {
+                if (! $user->can('invitations.manage')) {
+                    return;
+                }
+
                 NotificationRequested::dispatch(
                     $user::class,
                     $user->getKey(),

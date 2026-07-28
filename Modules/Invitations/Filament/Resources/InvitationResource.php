@@ -2,8 +2,6 @@
 
 namespace Modules\Invitations\Filament\Resources;
 
-use App\Filament\Components\SharedTableColumns;
-use App\Filament\Components\StatusComponents;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
@@ -23,6 +21,8 @@ use Modules\Invitations\Models\Invitation;
 use Modules\Invitations\Rules\SafeExternalUrl;
 use Modules\Invitations\Services\InvitationPublicLinkService;
 use Modules\Templates\Models\Template;
+use Mythos\Core\UI\Filament\SharedTableColumns;
+use Mythos\Core\UI\Filament\StatusComponents;
 
 class InvitationResource extends Resource
 {

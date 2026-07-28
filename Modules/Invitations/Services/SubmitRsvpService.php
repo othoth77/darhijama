@@ -44,7 +44,7 @@ class SubmitRsvpService
         $response ??= $invitation->rsvpResponses()->firstOrNew(['identity_hash' => $identityHash]);
 
         $response->fill([
-            'identity_hash' => $identityHash,
+            'identity_hash' => $response->exists ? $response->identity_hash : $identityHash,
             'correction_token' => $response->correction_token ?: Str::random(64),
             'status' => $data['status'],
             'name' => $data['name'],

@@ -3,14 +3,14 @@
 namespace Tests\Feature;
 
 use App\Events\NotificationRequested;
-use App\Models\User;
-use App\Notifications\Contracts\NotificationQueue;
-use App\Notifications\Jobs\SendNotification;
-use App\Notifications\NotificationChannelManager;
-use App\Notifications\NotificationMessage;
-use App\Notifications\NotificationService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
+use Mythos\Core\Identity\Models\User;
+use Mythos\Core\Notifications\Contracts\NotificationQueue;
+use Mythos\Core\Notifications\Jobs\SendNotification;
+use Mythos\Core\Notifications\NotificationChannelManager;
+use Mythos\Core\Notifications\NotificationMessage;
+use Mythos\Core\Notifications\NotificationService;
 use RuntimeException;
 use Tests\TestCase;
 

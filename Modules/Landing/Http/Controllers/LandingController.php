@@ -2,13 +2,13 @@
 
 namespace Modules\Landing\Http\Controllers;
 
-use App\Analytics\VisitorFingerprint;
 use App\Contracts\Templates\TemplateCatalog;
 use App\Events\PublicPageViewed;
-use App\Support\WhatsApp\WhatsAppLinkBuilder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Mythos\Core\Analytics\VisitorFingerprint;
+use Mythos\Core\WhatsApp\WhatsAppLinkBuilder;
 
 /**
  * Page d'accueil publique. Le contenu éditorial reste local au module Landing,

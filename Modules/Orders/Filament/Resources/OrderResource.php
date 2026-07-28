@@ -2,8 +2,6 @@
 
 namespace Modules\Orders\Filament\Resources;
 
-use App\Filament\Components\SharedTableColumns;
-use App\Filament\Components\StatusComponents;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -16,6 +14,8 @@ use Modules\Orders\Filament\Resources\OrderResource\Pages;
 use Modules\Orders\Filament\Resources\OrderResource\RelationManagers\InvitationsRelationManager;
 use Modules\Orders\Models\Order;
 use Modules\Templates\Models\Template;
+use Mythos\Core\UI\Filament\SharedTableColumns;
+use Mythos\Core\UI\Filament\StatusComponents;
 
 class OrderResource extends Resource
 {

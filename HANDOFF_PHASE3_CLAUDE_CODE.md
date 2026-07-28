@@ -160,7 +160,7 @@ Créer le système complet des invitations publiques : chaque client possède un
 - Galerie photo / vidéo / musique : lues depuis la relation polymorphe déjà existante `invitation->media()`, filtrée par la colonne `type` du modèle `Media` (`image`/`video`/`audio`) — alias morphMap `'invitation'` (déjà enregistré dans `MediaServiceProvider`, non modifié).
 - QR Code : `endroid/qr-code` (déjà présent dans `composer.json`, jamais utilisé avant), génération lazy au premier accès à `/i/{token}/qr`, résultat mis en cache via `invitations.qr_code_path`.
 - Compte à rebours : réutilise le composant Alpine.js `countdown()` déjà existant dans `resources/js/app.js` (non modifié) — le calcul des années se fait côté vue via `Math.floor(days / 365)`.
-- Lien de partage WhatsApp : réutilise `App\Support\WhatsApp\WhatsAppLinkBuilder::make()->link(...)` existant.
+- Lien de partage WhatsApp : réutilise `Mythos\Core\WhatsApp\WhatsAppLinkBuilder::make()->link(...)` existant.
 
 ### 3.4 Services et policy
 

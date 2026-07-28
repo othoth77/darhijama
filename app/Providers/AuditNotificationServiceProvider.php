@@ -2,18 +2,9 @@
 
 namespace App\Providers;
 
-use App\Analytics\Models\AnalyticsEvent;
-use App\Analytics\Models\PageView;
-use App\Analytics\Models\WhatsappClickEvent;
-use App\Audit\AuditAction;
-use App\Audit\AuditService;
-use App\Audit\Models\AuditLog;
 use App\Events\InvitationPublished;
 use App\Events\NotificationRequested;
 use App\Listeners\QueueRequestedNotification;
-use App\Notifications\Contracts\NotificationQueue;
-use App\Notifications\LaravelNotificationQueue;
-use App\Notifications\Models\NotificationDelivery;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +14,15 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Pennant\Events\FeatureDeleted;
 use Laravel\Pennant\Events\FeatureUpdated;
 use Laravel\Pennant\Events\FeatureUpdatedForAllScopes;
+use Mythos\Core\Analytics\Models\AnalyticsEvent;
+use Mythos\Core\Analytics\Models\PageView;
+use Mythos\Core\Analytics\Models\WhatsappClickEvent;
+use Mythos\Core\Audit\AuditAction;
+use Mythos\Core\Audit\Contracts\AuditLogger as AuditService;
+use Mythos\Core\Audit\Models\AuditLog;
+use Mythos\Core\Notifications\Contracts\NotificationQueue;
+use Mythos\Core\Notifications\LaravelNotificationQueue;
+use Mythos\Core\Notifications\Models\NotificationDelivery;
 use Spatie\Permission\Events\PermissionAttached;
 use Spatie\Permission\Events\PermissionDetached;
 use Spatie\Permission\Events\RoleAttached;

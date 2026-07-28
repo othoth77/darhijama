@@ -2,10 +2,10 @@
 
 namespace Modules\Invitations\Services;
 
-use App\Support\QrCode\QrCodeService;
 use Modules\Invitations\Models\Invitation;
-use Modules\Media\Services\MediaService;
-use Modules\Media\Services\StoredMediaFile;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
+use Mythos\Core\Media\Services\StoredMediaFile;
+use Mythos\Core\QrCode\Contracts\QrCodeGenerator as QrCodeService;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 

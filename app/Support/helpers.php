@@ -1,6 +1,6 @@
 <?php
 
-use App\Support\WhatsApp\WhatsAppLinkBuilder;
+use Mythos\Core\WhatsApp\WhatsAppLinkBuilder;
 
 if (! function_exists('whatsapp_link')) {
     /**

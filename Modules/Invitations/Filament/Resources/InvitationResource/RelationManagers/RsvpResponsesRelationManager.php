@@ -2,13 +2,13 @@
 
 namespace Modules\Invitations\Filament\Resources\InvitationResource\RelationManagers;
 
-use App\Filament\Components\SharedTableColumns;
-use App\Filament\Components\StatusComponents;
 use Filament\Actions\DeleteAction;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Mythos\Core\UI\Filament\SharedTableColumns;
+use Mythos\Core\UI\Filament\StatusComponents;
 
 /**
  * Lecture seule côté admin (Phase 3) : les réponses RSVP sont exclusivement

@@ -3,9 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\NotificationRequested;
-use App\Notifications\NotificationService;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
+use Mythos\Core\Notifications\Contracts\NotificationDispatcher as NotificationService;
 
 class QueueRequestedNotification
 {

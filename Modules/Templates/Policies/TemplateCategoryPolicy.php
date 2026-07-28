@@ -2,8 +2,8 @@
 
 namespace Modules\Templates\Policies;
 
-use App\Models\User;
 use Modules\Templates\Models\TemplateCategory;
+use Mythos\Core\Identity\Models\User;
 
 class TemplateCategoryPolicy
 {

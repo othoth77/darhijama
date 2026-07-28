@@ -1,0 +1,43 @@
+{
+    "name": "MythosShowcase",
+    "slug": "mythos-showcase",
+    "namespace": "Applications\\MythosShowcase\\",
+    "version": "1.0.0",
+    "description": "Independent capability showcase built on the public Mythos OS SDK.",
+    "application_class": "Applications\\MythosShowcase\\Application",
+    "service_provider": "Applications\\MythosShowcase\\Providers\\MythosShowcaseServiceProvider",
+    "core_capabilities": [
+        "identity",
+        "authorization",
+        "media",
+        "notifications",
+        "analytics",
+        "audit"
+    ],
+    "permissions": [
+        "mythos-showcase.view",
+        "mythos-showcase.manage"
+    ],
+    "routes": [
+        {
+            "path": "routes/web.php",
+            "middleware": ["web"]
+        }
+    ],
+    "migrations": ["database/migrations"],
+    "config": [
+        {
+            "key": "applications.mythos-showcase",
+            "path": "config/application.php"
+        }
+    ],
+    "view_namespace": "mythos-showcase",
+    "views": "resources/views",
+    "translations": "resources/lang",
+    "commands": [],
+    "event_listeners": [],
+    "assets": [],
+    "compatibility": {
+        "mythos_core": "^1.0"
+    }
+}

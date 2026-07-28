@@ -2,8 +2,8 @@
 
 namespace Modules\Invitations\Policies;
 
-use App\Models\User;
 use Modules\Invitations\Models\RsvpResponse;
+use Mythos\Core\Identity\Models\User;
 
 /**
  * Réutilise la permission "invitations.manage" existante (aucune nouvelle

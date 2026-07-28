@@ -18,7 +18,7 @@ use Modules\Invitations\Observers\InvitationObserver;
 use Modules\Invitations\Observers\ProgramStepObserver;
 use Modules\Invitations\Policies\InvitationPolicy;
 use Modules\Invitations\Policies\RsvpResponsePolicy;
-use Modules\Media\Models\Media;
+use Mythos\Core\Media\Models\Media;
 
 /**
  * Module core (MVP) — toujours actif, aucun Feature Flag requis.

@@ -1,0 +1,763 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$published_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Filament/Resources/InvitationResource.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$qr_code_path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Filament/Resources/InvitationResource.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Filament/Resources/InvitationResource/Pages/EditInvitation.php
+
+		-
+			message: '#^Parameter \#1 \$actions of method Filament\\Tables\\Table\:\:actions\(\) expects array\<Filament\\Tables\\Actions\\Action\|Filament\\Tables\\Actions\\ActionGroup\>\|Filament\\Tables\\Actions\\ActionGroup, array\{Filament\\Actions\\DeleteAction\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Modules/Invitations/Filament/Resources/InvitationResource/RelationManagers/RsvpResponsesRelationManager.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$bride_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Http/Controllers/InvitationPublicController.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$external_audio_url\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Http/Controllers/InvitationPublicController.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$external_video_url\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Http/Controllers/InvitationPublicController.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$facebook_url\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Http/Controllers/InvitationPublicController.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$groom_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Http/Controllers/InvitationPublicController.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$instagram_url\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Http/Controllers/InvitationPublicController.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$maps_embed_url\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Http/Controllers/InvitationPublicController.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$correction_token\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Http/Controllers/InvitationPublicController.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$invitation_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Listeners/NotifyAdminsOfRsvp.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Listeners/NotifyAdminsOfRsvp.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Listeners/NotifyAdminsOfRsvp.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$submissions_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Listeners/NotifyAdminsOfRsvp.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$published_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Models/Invitation.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Models/Invitation.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\ProgramStep\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Invitations/Models/Invitation.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\RsvpResponse\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Invitations/Models/Invitation.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\MorphMany\<Mythos\\Core\\Media\\Models\\Media\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\MorphMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Invitations/Models/Invitation.php
+
+		-
+			message: '#^Method Modules\\Invitations\\Models\\Invitation\:\:media\(\) should return Illuminate\\Database\\Eloquent\\Relations\\MorphMany\<Mythos\\Core\\Media\\Models\\Media\> but returns Illuminate\\Database\\Eloquent\\Relations\\MorphMany\<Mythos\\Core\\Media\\Models\\Media, \$this\(Modules\\Invitations\\Models\\Invitation\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Invitations/Models/Invitation.php
+
+		-
+			message: '#^Method Modules\\Invitations\\Models\\Invitation\:\:programSteps\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\ProgramStep\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\ProgramStep, \$this\(Modules\\Invitations\\Models\\Invitation\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Invitations/Models/Invitation.php
+
+		-
+			message: '#^Method Modules\\Invitations\\Models\\Invitation\:\:rsvpResponses\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\RsvpResponse\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\RsvpResponse, \$this\(Modules\\Invitations\\Models\\Invitation\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Invitations/Models/Invitation.php
+
+		-
+			message: '#^Parameter \#1 \$invitation of method Modules\\Invitations\\Services\\InvitationPublicCache\:\:invalidate\(\) expects Modules\\Invitations\\Models\\Invitation, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Modules/Invitations/Observers/ProgramStepObserver.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Order\:\:\$template_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/CreateInvitationService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$bride_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/DuplicateInvitationService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$groom_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/DuplicateInvitationService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/DuplicateInvitationService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/InvitationPreviewLinkService.php
+
+		-
+			message: '#^Access to an undefined property Mythos\\Core\\Media\\Models\\Media\:\:\$disk\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Invitations/Services/InvitationPublicCache.php
+
+		-
+			message: '#^Access to an undefined property Mythos\\Core\\Media\\Models\\Media\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Invitations/Services/InvitationPublicCache.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/InvitationPublicLinkService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/InvitationQrCodeService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$qr_code_path\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Services/InvitationQrCodeService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 4
+			path: Modules/Invitations/Services/InvitationWorkflowService.php
+
+		-
+			message: '#^Match expression does not handle remaining value\: mixed$#'
+			identifier: match.unhandled
+			count: 1
+			path: Modules/Invitations/Services/InvitationWorkflowService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$correction_token\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/SubmitRsvpService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$identity_hash\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/SubmitRsvpService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$submissions_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Services/SubmitRsvpService.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Tests/Feature/CreateInvitationServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$template_id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Tests/Feature/CreateInvitationServiceTest.php
+
+		-
+			message: '#^Parameter \#1 \$expected of method PHPUnit\\Framework\\Assert\:\:assertSame\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: Modules/Invitations/Tests/Feature/CreateInvitationServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$groom_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Tests/Feature/InvitationProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 8
+			path: Modules/Invitations/Tests/Feature/InvitationProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$published_at\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Tests/Feature/InvitationProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$qr_code_path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Tests/Feature/InvitationProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Tests/Feature/InvitationProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$correction_token\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Tests/Feature/InvitationProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Tests/Feature/InvitationProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$submissions_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Tests/Feature/InvitationProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 5
+			path: Modules/Invitations/Tests/Feature/InvitationPublicPageTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 5
+			path: Modules/Invitations/Tests/Feature/InvitationQrCodeServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$qr_code_path\.$#'
+			identifier: property.notFound
+			count: 3
+			path: Modules/Invitations/Tests/Feature/InvitationQrCodeServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Tests/Feature/InvitationQrCodeTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$qr_code_path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Tests/Feature/InvitationQrCodeTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 5
+			path: Modules/Invitations/Tests/Feature/InvitationRsvpControllerTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$published_at\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Tests/Feature/PublishInvitationServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$guests_count\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Tests/Feature/SubmitRsvpServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$invitation_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Invitations/Tests/Feature/SubmitRsvpServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\RsvpResponse\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Invitations/Tests/Feature/SubmitRsvpServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Landing/Tests/Feature/LandingProductionCompletionTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 3
+			path: Modules/Landing/Tests/Feature/LandingProductionCompletionTest.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 3
+			path: Modules/Media/config/config.php
+
+		-
+			message: '#^Parameter \#1 \$actions of method Filament\\Tables\\Table\:\:actions\(\) expects array\<Filament\\Tables\\Actions\\Action\|Filament\\Tables\\Actions\\ActionGroup\>\|Filament\\Tables\\Actions\\ActionGroup, array\{Filament\\Actions\\EditAction, Filament\\Actions\\Action\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Modules/Orders/Filament/Resources/OrderResource/RelationManagers/InvitationsRelationManager.php
+
+		-
+			message: '#^Parameter \#1 \$actions of method Filament\\Tables\\Table\:\:headerActions\(\) expects array\<Filament\\Tables\\Actions\\Action\|Filament\\Tables\\Actions\\ActionGroup\|Filament\\Tables\\Actions\\BulkAction\>\|Filament\\Tables\\Actions\\ActionGroup, array\{Filament\\Actions\\CreateAction\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Modules/Orders/Filament/Resources/OrderResource/RelationManagers/InvitationsRelationManager.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Orders\\Models\\Order\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Orders/Models/Client.php
+
+		-
+			message: '#^Method Modules\\Orders\\Models\\Client\:\:orders\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Orders\\Models\\Order\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Orders\\Models\\Order, \$this\(Modules\\Orders\\Models\\Client\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Orders/Models/Client.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\Invitation\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Orders/Models/Order.php
+
+		-
+			message: '#^Method Modules\\Orders\\Models\\Order\:\:invitations\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\Invitation\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\Invitation, \$this\(Modules\\Orders\\Models\\Order\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Orders/Models/Order.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Client\:\:\$whatsapp_phone\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Orders/Observers/ClientObserver.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Client\:\:\$whatsapp_phone_normalized\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Orders/Observers/ClientObserver.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Order\:\:\$currency\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Orders/Observers/OrderObserver.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Order\:\:\$total\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Orders/Observers/OrderObserver.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Order\:\:\$client_id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Orders/Tests/Feature/CreateOrderServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Order\:\:\$reference\.$#'
+			identifier: property.notFound
+			count: 3
+			path: Modules/Orders/Tests/Feature/CreateOrderServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Order\:\:\$total\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Orders/Tests/Feature/CreateOrderServiceTest.php
+
+		-
+			message: '#^Parameter \#1 \$expected of method PHPUnit\\Framework\\Assert\:\:assertSame\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: Modules/Orders/Tests/Feature/CreateOrderServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Client\:\:\$whatsapp_phone_normalized\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Orders/Tests/Unit/ClientPhoneNormalizationTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Order\:\:\$currency\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Orders/Tests/Unit/OrderAmountValidationTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Orders\\Models\\Order\:\:\$total\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Orders/Tests/Unit/OrderAmountValidationTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Templates/Http/Controllers/TemplateCatalogController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:active\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Modules/Templates/Http/Controllers/TemplateCatalogController.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\Invitation\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Templates/Models/Template.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Orders\\Models\\Order\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Templates/Models/Template.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\MorphMany\<Mythos\\Core\\Media\\Models\\Media\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\MorphMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Templates/Models/Template.php
+
+		-
+			message: '#^Method Modules\\Templates\\Models\\Template\:\:invitations\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\Invitation\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Invitations\\Models\\Invitation, \$this\(Modules\\Templates\\Models\\Template\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Templates/Models/Template.php
+
+		-
+			message: '#^Method Modules\\Templates\\Models\\Template\:\:media\(\) should return Illuminate\\Database\\Eloquent\\Relations\\MorphMany\<Mythos\\Core\\Media\\Models\\Media\> but returns Illuminate\\Database\\Eloquent\\Relations\\MorphMany\<Mythos\\Core\\Media\\Models\\Media, \$this\(Modules\\Templates\\Models\\Template\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Templates/Models/Template.php
+
+		-
+			message: '#^Method Modules\\Templates\\Models\\Template\:\:orders\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Orders\\Models\\Order\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Orders\\Models\\Order, \$this\(Modules\\Templates\\Models\\Template\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Templates/Models/Template.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Templates\\Models\\Template\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: Modules/Templates/Models/TemplateCategory.php
+
+		-
+			message: '#^Method Modules\\Templates\\Models\\TemplateCategory\:\:templates\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Templates\\Models\\Template\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Modules\\Templates\\Models\\Template, \$this\(Modules\\Templates\\Models\\TemplateCategory\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Modules/Templates/Models/TemplateCategory.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Templates/Services/EloquentTemplateCatalog.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Templates/Services/EloquentTemplateCatalog.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Templates/Services/EloquentTemplateCatalog.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$preview_image_path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Templates/Services/EloquentTemplateCatalog.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Templates/Services/EloquentTemplateCatalog.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) expects callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: App\\Contracts\\Templates\\TemplateSummary, Closure\(Modules\\Templates\\Models\\Template\)\: App\\Contracts\\Templates\\TemplateSummary given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Modules/Templates/Services/EloquentTemplateCatalog.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Pagination\\AbstractPaginator\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:through\(\) expects callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: Modules\\Templates\\Models\\Template, Closure\(Modules\\Templates\\Models\\Template\)\: Modules\\Templates\\Models\\Template given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Modules/Templates/Services/EloquentTemplateCatalog.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Templates/Tests/Feature/PublicTemplateCatalogTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$preview_image_path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Modules/Templates/Tests/Feature/PublicTemplateCatalogTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Modules/Templates/Tests/Feature/PublicTemplateDetailsTest.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 1
+			path: Mythos/Core/Analytics/config.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 1
+			path: Mythos/Core/Audit/config.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 1
+			path: Mythos/Core/Identity/config.php
+
+		-
+			message: '#^Access to an undefined property Mythos\\Core\\Media\\Models\\Media\:\:\$disk\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Mythos/Core/Media/Services/MediaService.php
+
+		-
+			message: '#^Access to an undefined property Mythos\\Core\\Media\\Models\\Media\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 2
+			path: Mythos/Core/Media/Services/MediaService.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:media\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: Mythos/Core/Media/Services/MediaService.php
+
+		-
+			message: '#^Access to an undefined property Mythos\\Core\\Media\\Models\\Media\:\:\$mediable_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Mythos/Core/Media/Tests/Feature/MediaServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Mythos\\Core\\Media\\Models\\Media\:\:\$mediable_type\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Mythos/Core/Media/Tests/Feature/MediaServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Mythos\\Core\\Media\\Models\\Media\:\:\$original_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: Mythos/Core/Media/Tests/Feature/MediaServiceTest.php
+
+		-
+			message: '#^Access to an undefined property Mythos\\Core\\Media\\Models\\Media\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 3
+			path: Mythos/Core/Media/Tests/Feature/MediaServiceTest.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 3
+			path: Mythos/Core/Media/config.php
+
+		-
+			message: '#^Parameter \#1 \$data of static method Mythos\\Core\\Notifications\\NotificationMessage\:\:fromArray\(\) expects array, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Mythos/Core/Notifications/NotificationService.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 1
+			path: Mythos/Core/Notifications/config.php
+
+		-
+			message: '#^Call to an undefined method Mockery\\ExpectationInterface\|Mockery\\HigherOrderMessage\:\:once\(\)\.$#'
+			identifier: method.notFound
+			count: 11
+			path: Mythos/Core/QrCode/Tests/Unit/QrCodeServiceTest.php
+
+		-
+			message: '#^Parameter \#1 \$mediaService of class Mythos\\Core\\QrCode\\QrCodeService constructor expects Mythos\\Core\\Media\\Contracts\\MediaManager, Mockery\\MockInterface given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Mythos/Core/QrCode/Tests/Unit/QrCodeServiceTest.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 2
+			path: Mythos/Core/Security/config.php
+
+		-
+			message: '#^Using nullsafe method call on non\-nullable type Illuminate\\Contracts\\Auth\\Authenticatable\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 2
+			path: app/Providers/AuditNotificationServiceProvider.php
+
+		-
+			message: '#^Return type \(array\<string, mixed\>\) of method Database\\Factories\\UserFactory\:\:definition\(\) should be compatible with return type \(array\<model property of Mythos\\Core\\Identity\\Models\\User, mixed\>\) of method Illuminate\\Database\\Eloquent\\Factories\\Factory\<Mythos\\Core\\Identity\\Models\\User\>\:\:definition\(\)$#'
+			identifier: method.childReturnType
+			count: 1
+			path: database/factories/UserFactory.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 2
+			path: database/seeders/DatabaseSeeder.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 2
+			path: tests/Feature/AnalyticsEventsTest.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertNotNull\(\) with string will always evaluate to true\.$#'
+			identifier: method.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/AnalyticsTrackingEndpointTest.php
+
+		-
+			message: '#^Offset ''after'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: tests/Feature/AuditLogTest.php
+
+		-
+			message: '#^Offset ''before'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Feature/AuditLogTest.php
+
+		-
+			message: '#^Offset ''values'' does not exist on string\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Feature/AuditLogTest.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertNotNull\(\) with Mythos\\Core\\Notifications\\Contracts\\NotificationChannel will always evaluate to true\.$#'
+			identifier: method.alreadyNarrowedType
+			count: 3
+			path: tests/Feature/NotificationFoundationTest.php
+
+		-
+			message: '#^Access to an undefined property Modules\\Invitations\\Models\\Invitation\:\:\$public_token\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/ProductionSecurityTest.php

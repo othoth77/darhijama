@@ -2,8 +2,8 @@
 
 namespace Modules\Templates\Observers;
 
-use Modules\Media\Services\MediaService;
 use Modules\Templates\Models\Template;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
 
 /**
  * Supprime uniquement les lignes Media rattachées (jamais les fichiers physiques

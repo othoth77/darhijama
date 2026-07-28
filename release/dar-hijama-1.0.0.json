@@ -1,0 +1,47 @@
+{
+    "application": "Dar Hijama",
+    "application_slug": "dar-hijama",
+    "application_version": "1.0.0",
+    "mythos_core_version": "1.0.0",
+    "release_branch": "release/darhijama-1.0.0",
+    "release_tag": "darhijama-v1.0.0",
+    "runtime": {
+        "php": "^8.3",
+        "laravel": "^12.0",
+        "database": "MySQL 8.4",
+        "cache": "Redis 7.4",
+        "queue": "Redis 7.4",
+        "session": "Redis 7.4"
+    },
+    "public_hosts": [
+        "darhijama.tn",
+        "www.darhijama.tn"
+    ],
+    "entry_points": {
+        "homepage": "/",
+        "admin": "/admin/login",
+        "liveness": "/mythos/dar-hijama/health",
+        "readiness": "/mythos/dar-hijama/ready"
+    },
+    "deployment_artifacts": [
+        ".dockerignore",
+        ".env.production.example",
+        "docker-compose.production.yml",
+        "docker-compose.staging.yml",
+        "ops/staging/Dockerfile",
+        "ops/staging/entrypoint.sh",
+        "ops/staging/nginx.conf",
+        "ops/staging/php.ini",
+        "ops/staging/opcache.ini",
+        "ops/staging/release.sh",
+        "ops/staging/verify.sh",
+        "ops/staging/backup.sh",
+        "ops/staging/restore.sh"
+    ],
+    "required_commands": [
+        "php artisan migrate --force",
+        "php artisan dar-hijama:install",
+        "php artisan optimize",
+        "php artisan queue:restart"
+    ]
+}

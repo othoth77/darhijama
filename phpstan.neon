@@ -1,0 +1,15 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - phpstan-baseline.neon
+
+parameters:
+    paths:
+        - app
+        - Mythos/Core
+        - Modules
+        - database
+        - routes
+        - tests
+    level: 5
+    tmpDir: storage/framework/cache/phpstan
+    checkModelProperties: true

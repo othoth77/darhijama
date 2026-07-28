@@ -2,7 +2,6 @@
 
 namespace Modules\Invitations\Filament\Resources\InvitationResource\Pages;
 
-use App\Filament\Components\SharedActions;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
@@ -15,6 +14,7 @@ use Modules\Invitations\Services\InvitationPublicLinkService;
 use Modules\Invitations\Services\InvitationQrCodeService;
 use Modules\Invitations\Services\InvitationWorkflowService;
 use Modules\Invitations\Services\PublishInvitationService;
+use Mythos\Core\UI\Filament\SharedActions;
 
 class EditInvitation extends EditRecord
 {

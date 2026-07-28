@@ -3,10 +3,10 @@
 namespace Modules\Landing\Http\Controllers;
 
 use App\Contracts\Templates\TemplateCatalog;
-use App\Support\WhatsApp\WhatsAppLinkBuilder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Mythos\Core\WhatsApp\WhatsAppLinkBuilder;
 
 class PublicSiteController extends Controller
 {

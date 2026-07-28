@@ -2,8 +2,8 @@
 
 namespace Modules\Invitations\Services;
 
-use App\Support\PublicLinks\PublicLinkService;
 use Modules\Invitations\Models\Invitation;
+use Mythos\Core\PublicLinks\Contracts\PublicLinkGenerator as PublicLinkService;
 
 class InvitationPublicLinkService
 {

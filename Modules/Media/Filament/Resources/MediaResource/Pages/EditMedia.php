@@ -5,8 +5,8 @@ namespace Modules\Media\Filament\Resources\MediaResource\Pages;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Modules\Media\Filament\Resources\MediaResource;
-use Modules\Media\Models\Media;
-use Modules\Media\Services\MediaService;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
+use Mythos\Core\Media\Models\Media;
 
 class EditMedia extends EditRecord
 {

@@ -2,7 +2,6 @@
 
 namespace Modules\Templates\Filament\Resources;
 
-use App\Filament\Components\MediaUploadField;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -14,10 +13,11 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Media\Services\MediaService;
 use Modules\Templates\Filament\Resources\TemplateResource\Pages;
 use Modules\Templates\Models\Template;
 use Modules\Templates\Models\TemplateCategory;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
+use Mythos\Core\UI\Filament\MediaUploadField;
 
 class TemplateResource extends Resource
 {

@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }}\Tests\Feature;
+
+use Tests\TestCase;
+
+class ApplicationHealthTest extends TestCase
+{
+    public function test_application_health_route_is_available(): void
+    {
+        $this->get(route('mythos.{{ slug }}.health'))
+            ->assertOk()
+            ->assertJson([
+                'application' => '{{ slug }}',
+                'status' => 'ok',
+            ]);
+    }
+}

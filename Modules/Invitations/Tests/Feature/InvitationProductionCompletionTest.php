@@ -2,7 +2,6 @@
 
 namespace Modules\Invitations\Tests\Feature;
 
-use App\Models\User;
 use DomainException;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,7 +14,9 @@ use Modules\Invitations\Services\DuplicateInvitationService;
 use Modules\Invitations\Services\InvitationPreviewLinkService;
 use Modules\Invitations\Services\InvitationWorkflowService;
 use Modules\Invitations\Services\SubmitRsvpService;
-use Modules\Media\Models\Media;
+use Mythos\Core\Identity\Models\User;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
+use Mythos\Core\Media\Models\Media;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -59,13 +60,17 @@ class InvitationProductionCompletionTest extends TestCase
     {
         $invitation = Invitation::factory()->create();
         $user = User::factory()->create();
+        $signedUrl = app(InvitationPreviewLinkService::class)->temporary($invitation);
+
+        $this->get($signedUrl)
+            ->assertRedirect(route('filament.admin.auth.login'));
 
         $this->actingAs($user)
             ->get(route('invitations.preview', $invitation->public_token))
             ->assertForbidden();
 
         $this->actingAs($user)
-            ->get(app(InvitationPreviewLinkService::class)->temporary($invitation))
+            ->get($signedUrl)
             ->assertForbidden();
     }
 
@@ -112,6 +117,8 @@ class InvitationProductionCompletionTest extends TestCase
             'type' => 'image',
             'order' => 1,
         ]);
+        Storage::fake('public');
+        Storage::disk('public')->put('invitations/image.jpg', 'image');
 
         $copy = app(DuplicateInvitationService::class)->execute($source);
 
@@ -121,6 +128,9 @@ class InvitationProductionCompletionTest extends TestCase
         $this->assertNull($copy->qr_code_path);
         $this->assertCount(1, $copy->programSteps);
         $this->assertCount(1, $copy->media);
+
+        app(MediaService::class)->deleteMedia($copy->media->first());
+        Storage::disk('public')->assertExists('invitations/image.jpg');
     }
 
     public function test_rsvp_is_deduplicated_and_can_be_safely_corrected(): void

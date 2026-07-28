@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Modules\Invitations\Database\Factories\InvitationFactory;
 use Modules\Invitations\Enums\InvitationStatus;
-use Modules\Media\Models\Media;
 use Modules\Orders\Models\Order;
 use Modules\Templates\Models\Template;
+use Mythos\Core\Media\Models\Media;
 
 class Invitation extends Model
 {

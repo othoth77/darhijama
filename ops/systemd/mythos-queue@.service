@@ -1,0 +1,25 @@
+[Unit]
+Description=Mythos OS Laravel queue worker %i
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=mythos
+Group=mythos
+WorkingDirectory=/var/www/mythos/current
+ExecStart=/usr/bin/php artisan queue:work database --queue=notifications,default --sleep=2 --tries=3 --timeout=90 --memory=256 --max-time=3600
+ExecReload=/usr/bin/php artisan queue:restart
+Restart=always
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=120
+StandardOutput=append:/var/log/mythos/queue.log
+StandardError=append:/var/log/mythos/queue-error.log
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/www/mythos/current/storage /var/www/mythos/current/bootstrap/cache /var/log/mythos
+
+[Install]
+WantedBy=multi-user.target

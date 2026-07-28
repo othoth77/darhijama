@@ -2,12 +2,15 @@
 
 namespace App\Listeners;
 
-use App\Analytics\AnalyticsEventType;
-use App\Analytics\AnalyticsService;
 use App\Events\RsvpSubmitted;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Mythos\Core\Analytics\AnalyticsEventType;
+use Mythos\Core\Analytics\Contracts\AnalyticsRecorder as AnalyticsService;
 
-class RecordRsvpSubmission
+class RecordRsvpSubmission implements ShouldQueue
 {
+    public bool $afterCommit = true;
+
     public function __construct(private readonly AnalyticsService $analytics) {}
 
     public function handle(RsvpSubmitted $event): void
