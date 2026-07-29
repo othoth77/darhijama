@@ -76,6 +76,8 @@ services:
       SERVICE_FQDN_WEB_80: ${DEPLOYMENT_URL:?DEPLOYMENT_URL is required}
     volumes:
       - staging-storage:/var/www/html/storage:ro
+    ports:
+      - "127.0.0.1:8085:80"
     depends_on:
       app:
         condition: service_healthy
