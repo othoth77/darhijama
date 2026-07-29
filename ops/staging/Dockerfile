@@ -37,8 +37,10 @@ COPY ops/staging/opcache.ini /usr/local/etc/php/conf.d/10-opcache.ini
 COPY ops/staging/entrypoint.sh /usr/local/bin/mythos-entrypoint
 RUN mkdir -p storage/app/private storage/app/public storage/framework/cache/data \
        storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
+       resources/views \
     && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R u+rwX,go-rwx storage bootstrap/cache \
+    && sed -i 's/\r//' /usr/local/bin/mythos-entrypoint \
     && composer dump-autoload --no-dev --classmap-authoritative --no-interaction \
     && chmod +x /usr/local/bin/mythos-entrypoint \
     && chown -R www-data:www-data storage bootstrap/cache
