@@ -22,3 +22,13 @@ yarn-error.log
 /.vscode
 /.stubs
 modules_statuses.json.bak
+
+# Deployment artefacts — never commit
+*.rar
+*.tar
+*.zip
+*.sql
+*.log
+/release/
+/storage/app/public/*
+!/storage/app/public/.gitignore

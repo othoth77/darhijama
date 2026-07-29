@@ -1,8 +1,0 @@
-
-Warning: require(C:\Users\Othman\Desktop\site\Notrejour\NotreJour_MVP_Evolutif\notre-jour/vendor/autoload.php): Failed to open stream: No such file or directory in C:\Users\Othman\Desktop\site\Notrejour\NotreJour_MVP_Evolutif\notre-jour\artisan on line 10
-
-Fatal error: Uncaught Error: Failed opening required 'C:\Users\Othman\Desktop\site\Notrejour\NotreJour_MVP_Evolutif\notre-jour/vendor/autoload.php' (include_path='.;C:/laragon/etc/php/pear') in C:\Users\Othman\Desktop\site\Notrejour\NotreJour_MVP_Evolutif\notre-jour\artisan:10
-Stack trace:
-#0 {main}
-  thrown in C:\Users\Othman\Desktop\site\Notrejour\NotreJour_MVP_Evolutif\notre-jour\artisan on line 10
-[15/07/2026 10:56:02,75] === ECHEC DE L'INSTALLATION === 
