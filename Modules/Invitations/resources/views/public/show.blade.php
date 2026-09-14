@@ -17,10 +17,9 @@
         :canonical="$publicUrl"
         :image="$heroUrl"
     />
-    {{-- Schema.org Event --}}
-    <script type="application/ld+json">
-        {!! json_encode([
-            '@context' => 'https://schema.org',
+    @php
+        $structuredData = [
+            (chr(64).'context') => 'https://schema.org',
             '@type' => 'Event',
             'name' => "Mariage de {$invitation->groom_name} & {$invitation->bride_name}",
             'startDate' => $invitation->wedding_date->toIso8601String(),
@@ -34,8 +33,9 @@
             'description' => $pageDescription,
             'image' => $heroUrl ? [$heroUrl] : [],
             'url' => $publicUrl,
-        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
-    </script>
+        ];
+    @endphp
+    <x-shared.structured-data :data="$structuredData" />
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=playfair-display:600,700|inter:400,500,600,700" rel="stylesheet" />

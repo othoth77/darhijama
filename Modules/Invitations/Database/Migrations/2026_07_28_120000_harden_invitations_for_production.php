@@ -27,6 +27,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('rsvp_responses', function (Blueprint $table) {
+            $table->index('invitation_id', 'rsvp_responses_invitation_id_rollback_index');
+        });
+
+        Schema::table('rsvp_responses', function (Blueprint $table) {
             $table->dropUnique(['invitation_id', 'identity_hash']);
             $table->dropUnique(['correction_token']);
             $table->dropColumn([

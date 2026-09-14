@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Modules\Invitations\Enums\InvitationStatus;
 use Modules\Invitations\Models\Invitation;
 use Modules\Invitations\Models\ProgramStep;
-use Modules\Media\Models\Media;
+use Mythos\Core\Media\Models\Media;
 use Tests\TestCase;
 
 /**
@@ -102,6 +102,7 @@ class InvitationPublicPageTest extends TestCase
             'type' => 'image',
             'order' => 1,
         ]);
+        Storage::disk('public')->put('invitations/photo-1.jpg', 'image');
 
         $response = $this->get("/i/{$invitation->public_token}");
 

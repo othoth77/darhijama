@@ -1,0 +1,8 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/mythos/{{ slug }}/health', fn () => response()->json([
+    'application' => '{{ slug }}',
+    'status' => 'ok',
+]))->name('mythos.{{ slug }}.health');

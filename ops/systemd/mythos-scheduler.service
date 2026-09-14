@@ -1,0 +1,17 @@
+[Unit]
+Description=Mythos OS Laravel scheduler
+After=network.target mysql.service
+
+[Service]
+Type=oneshot
+User=mythos
+Group=mythos
+WorkingDirectory=/var/www/mythos/current
+ExecStart=/usr/bin/php artisan schedule:run --no-interaction
+StandardOutput=append:/var/log/mythos/scheduler.log
+StandardError=append:/var/log/mythos/scheduler-error.log
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/www/mythos/current/storage /var/www/mythos/current/bootstrap/cache /var/log/mythos

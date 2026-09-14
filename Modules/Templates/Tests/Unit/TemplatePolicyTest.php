@@ -2,9 +2,9 @@
 
 namespace Modules\Templates\Tests\Unit;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Templates\Models\Template;
+use Mythos\Core\Identity\Models\User;
 use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 

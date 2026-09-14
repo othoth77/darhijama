@@ -2,8 +2,8 @@
 
 namespace Modules\Invitations\Policies;
 
-use App\Models\User;
 use Modules\Invitations\Models\Invitation;
+use Mythos\Core\Identity\Models\User;
 
 class InvitationPolicy
 {
@@ -28,6 +28,16 @@ class InvitationPolicy
     }
 
     public function delete(User $user, Invitation $invitation): bool
+    {
+        return $user->can('invitations.manage');
+    }
+
+    public function duplicate(User $user, Invitation $invitation): bool
+    {
+        return $user->can('invitations.manage');
+    }
+
+    public function publish(User $user, Invitation $invitation): bool
     {
         return $user->can('invitations.manage');
     }

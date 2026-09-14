@@ -1,0 +1,230 @@
+x-app-environment: &app-environment
+  APP_NAME: ${APP_NAME:-Mythos OS Staging}
+  APP_ENV: production
+  APP_KEY: ${APP_KEY:?APP_KEY is required}
+  APP_DEBUG: "false"
+  APP_TIMEZONE: ${APP_TIMEZONE:-Africa/Tunis}
+  APP_URL: ${DEPLOYMENT_URL:?DEPLOYMENT_URL is required}
+  TRUSTED_HOSTS: ${DEPLOYMENT_HOSTNAME:?DEPLOYMENT_HOSTNAME is required}
+  TRUSTED_PROXIES: ${TRUSTED_PROXIES:-10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
+  LOG_CHANNEL: stack
+  LOG_LEVEL: ${LOG_LEVEL:-info}
+  DB_CONNECTION: mysql
+  DB_HOST: mysql
+  DB_PORT: "3306"
+  DB_DATABASE: ${MYSQL_DATABASE:-mythos_staging}
+  DB_USERNAME: ${MYSQL_USER:-mythos_staging}
+  DB_PASSWORD: ${MYSQL_PASSWORD:?MYSQL_PASSWORD is required}
+  REDIS_CLIENT: phpredis
+  REDIS_QUEUE_CONNECTION: queue
+  REDIS_QUEUE_HOST: redis-queue
+  REDIS_QUEUE_PASSWORD: ${REDIS_QUEUE_PASSWORD:?REDIS_QUEUE_PASSWORD is required}
+  REDIS_QUEUE_DB: "0"
+  REDIS_CACHE_HOST: redis-cache
+  REDIS_CACHE_PASSWORD: ${REDIS_CACHE_PASSWORD:?REDIS_CACHE_PASSWORD is required}
+  REDIS_CACHE_DB: "0"
+  REDIS_SESSION_HOST: redis-session
+  REDIS_SESSION_PASSWORD: ${REDIS_SESSION_PASSWORD:?REDIS_SESSION_PASSWORD is required}
+  REDIS_SESSION_DB: "0"
+  CACHE_STORE: redis
+  # Without these, lock_connection falls back to the 'default' Redis
+  # connection, which resolves to 127.0.0.1 — a host that does not exist in
+  # this Docker Compose stack, so any Cache::lock() call (used by the
+  # scheduler's mutex) fails at runtime. Cherry-picked from commit 3a0c855
+  # (tag darhijama-v1.0.2, authored 2026-07-29, never deployed) after
+  # independently reproducing the exact same "Connection refused" failure
+  # on `php artisan schedule:list` while testing this branch.
+  REDIS_CACHE_CONNECTION: cache
+  REDIS_CACHE_LOCK_CONNECTION: cache
+  QUEUE_CONNECTION: redis
+  SESSION_DRIVER: redis
+  SESSION_CONNECTION: session
+  SESSION_SECURE_COOKIE: "true"
+  SESSION_HTTP_ONLY: "true"
+  SESSION_SAME_SITE: lax
+  SESSION_ENCRYPT: "true"
+  FILESYSTEM_DISK: local
+  MEDIA_DISK: local
+  MEDIA_VISIBILITY: private
+  MAIL_MAILER: log
+  DAR_HIJAMA_NOTIFICATION_CHANNELS: database
+  # Dar Hijama's own WhatsApp CTA number/message — overrides config/whatsapp.php's
+  # generic Notre-Jour-flavoured default (see CTR-1 in othoth77/othdesign).
+  # The number already appears elsewhere in this app (dar-hijama::public.home's
+  # previous tel: link) and in the archived pre-Laravel darhijama.tn site.
+  WHATSAPP_PHONE_E164: ${WHATSAPP_PHONE_E164:-21621821921}
+  WHATSAPP_DEFAULT_MESSAGE: ${WHATSAPP_DEFAULT_MESSAGE:-السلام عليكم، أرغب في حجز موعد حجامة في دار الحجامة.}
+  ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL is required}
+  ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD is required}
+  RELEASE_SHA: ${SOURCE_COMMIT:-local}
+
+x-app-service: &app-service
+  build:
+    context: .
+    dockerfile: ops/staging/Dockerfile
+    target: app
+  image: ${DEPLOYMENT_IMAGE_PREFIX:-mythos-staging}-app:${SOURCE_COMMIT:-latest}
+  environment: *app-environment
+  volumes:
+    - staging-storage:/var/www/html/storage
+  depends_on:
+    mysql:
+      condition: service_healthy
+    redis-queue:
+      condition: service_healthy
+    redis-cache:
+      condition: service_healthy
+    redis-session:
+      condition: service_healthy
+  restart: unless-stopped
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ops/staging/Dockerfile
+      target: web
+    image: ${DEPLOYMENT_IMAGE_PREFIX:-mythos-staging}-web:${SOURCE_COMMIT:-latest}
+    environment:
+      SERVICE_FQDN_WEB_80: ${DEPLOYMENT_URL:?DEPLOYMENT_URL is required}
+    volumes:
+      - staging-storage:/var/www/html/storage:ro
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/up"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  app:
+    <<: *app-service
+    healthcheck:
+      test: ["CMD-SHELL", "php -r '$$socket=@fsockopen(\"127.0.0.1\",9000,$$errno,$$error,2); exit($$socket ? 0 : 1);'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  queue:
+    <<: *app-service
+    command:
+      - php
+      - artisan
+      - queue:work
+      - redis
+      - --queue=notifications,default
+      - --sleep=2
+      - --tries=3
+      - --timeout=90
+      - --memory=256
+      - --max-time=3600
+    stop_grace_period: 120s
+    healthcheck:
+      test: ["CMD-SHELL", "php artisan queue:monitor notifications,default --max=100 >/dev/null 2>&1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  scheduler:
+    <<: *app-service
+    command:
+      - /bin/sh
+      - -c
+      - while true; do php artisan schedule:run --no-interaction; sleep 60; done
+    healthcheck:
+      test: ["CMD-SHELL", "php artisan schedule:list >/dev/null 2>&1"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mythos_staging}
+      MYSQL_USER: ${MYSQL_USER:-mythos_staging}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?MYSQL_PASSWORD is required}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD is required}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --transaction-isolation=READ-COMMITTED
+      - --innodb-flush-log-at-trx-commit=1
+      - --binlog-expire-logs-seconds=604800
+    volumes:
+      - staging-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 60s
+    restart: unless-stopped
+
+  redis-queue:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_QUEUE_PASSWORD:?REDIS_QUEUE_PASSWORD is required}"]
+    volumes:
+      - staging-redis-queue:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a $$REDIS_QUEUE_PASSWORD ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    environment:
+      REDIS_QUEUE_PASSWORD: ${REDIS_QUEUE_PASSWORD:?REDIS_QUEUE_PASSWORD is required}
+    restart: unless-stopped
+
+  redis-cache:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--save", "60", "1", "--requirepass", "${REDIS_CACHE_PASSWORD:?REDIS_CACHE_PASSWORD is required}"]
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a $$REDIS_CACHE_PASSWORD ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    environment:
+      REDIS_CACHE_PASSWORD: ${REDIS_CACHE_PASSWORD:?REDIS_CACHE_PASSWORD is required}
+    restart: unless-stopped
+
+  redis-session:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_SESSION_PASSWORD:?REDIS_SESSION_PASSWORD is required}"]
+    volumes:
+      - staging-redis-session:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a $$REDIS_SESSION_PASSWORD ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    environment:
+      REDIS_SESSION_PASSWORD: ${REDIS_SESSION_PASSWORD:?REDIS_SESSION_PASSWORD is required}
+    restart: unless-stopped
+
+  backup:
+    <<: *app-service
+    profiles: ["operations"]
+    entrypoint: ["/bin/sh"]
+    command: ["-c", "echo 'Run ops/staging/backup.sh or restore.sh explicitly'"]
+    volumes:
+      - staging-storage:/var/www/html/storage
+      - staging-backups:/backups
+    environment:
+      <<: *app-environment
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mythos_staging}
+      MYSQL_USER: ${MYSQL_USER:-mythos_staging}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?MYSQL_PASSWORD is required}
+      BACKUP_DIRECTORY: /backups
+    restart: "no"
+
+volumes:
+  staging-mysql:
+  staging-redis-queue:
+  staging-redis-session:
+  staging-storage:
+  staging-backups:

@@ -133,7 +133,7 @@ centrale que pour les écrans réellement transverses (Dashboard Analytics globa
 
 ### K. [Doublon de responsabilité] Deux sources de vérité pour « qui est admin »
 
-**Problème.** `App\Http\Middleware\EnsureUserIsAdmin` et `App\Models\User::canAccessPanel()` réalisaient
+**Problème.** `Mythos\Core\Identity\Http\Middleware\EnsureUserIsAdmin` et `Mythos\Core\Identity\Models\User::canAccessPanel()` réalisaient
 la même vérification (`hasRole('admin')`) sans qu'aucun des deux ne soit désigné comme source de vérité
 pour le panneau Filament — risque de divergence future si l'une des deux règles est modifiée sans l'autre.
 

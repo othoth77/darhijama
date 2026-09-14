@@ -2,15 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Analytics\AnalyticsEventType;
-use App\Analytics\Models\AnalyticsEvent;
-use App\Analytics\Models\PageView;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Invitations\Enums\InvitationStatus;
 use Modules\Invitations\Models\Invitation;
 use Modules\Invitations\Services\PublishInvitationService;
 use Modules\Invitations\Services\SubmitRsvpService;
 use Modules\Orders\Services\CreateOrderService;
+use Mythos\Core\Analytics\AnalyticsEventType;
+use Mythos\Core\Analytics\Models\AnalyticsEvent;
+use Mythos\Core\Analytics\Models\PageView;
 use Tests\TestCase;
 
 class AnalyticsEventsTest extends TestCase

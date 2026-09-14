@@ -4,7 +4,7 @@ namespace Modules\Invitations\Observers;
 
 use Modules\Invitations\Models\Invitation;
 use Modules\Invitations\Services\InvitationPublicCache;
-use Modules\Media\Models\Media;
+use Mythos\Core\Media\Models\Media;
 
 class InvitationMediaObserver
 {

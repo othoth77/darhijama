@@ -2,15 +2,15 @@
 
 namespace Modules\Templates\Http\Controllers;
 
-use App\Analytics\VisitorFingerprint;
 use App\Events\PublicPageViewed;
-use App\Support\WhatsApp\WhatsAppLinkBuilder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Templates\Models\Template;
 use Modules\Templates\Models\TemplateCategory;
 use Modules\Templates\Services\EloquentTemplateCatalog;
+use Mythos\Core\Analytics\VisitorFingerprint;
+use Mythos\Core\WhatsApp\WhatsAppLinkBuilder;
 
 class TemplateCatalogController extends Controller
 {

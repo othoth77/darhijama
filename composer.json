@@ -18,6 +18,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.0",
         "laravel/pail": "^1.1",
         "laravel/pint": "^1.13",
         "mockery/mockery": "^1.6",
@@ -28,8 +29,10 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "Applications\\": "Applications/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
+            "Mythos\\Core\\": "Mythos/Core/",
             "Modules\\": "Modules/"
         },
         "files": [
@@ -51,6 +54,7 @@
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "lint": "pint",
+        "analyse": "phpstan analyse --memory-limit=1G",
         "test": [
             "@php artisan config:clear",
             "@php artisan test"

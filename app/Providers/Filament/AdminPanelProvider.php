@@ -65,6 +65,24 @@ class AdminPanelProvider extends PanelProvider
             );
         }
 
+        foreach (glob(base_path('Applications/*/Filament/Resources'), GLOB_ONLYDIR) ?: [] as $directory) {
+            $application = basename(dirname(dirname($directory)));
+
+            $panel->discoverResources(
+                in: $directory,
+                for: "Applications\\{$application}\\Filament\\Resources",
+            );
+        }
+
+        foreach (glob(base_path('Applications/*/Filament/Widgets'), GLOB_ONLYDIR) ?: [] as $directory) {
+            $application = basename(dirname(dirname($directory)));
+
+            $panel->discoverWidgets(
+                in: $directory,
+                for: "Applications\\{$application}\\Filament\\Widgets",
+            );
+        }
+
         return $panel
             ->middleware([
                 EncryptCookies::class,

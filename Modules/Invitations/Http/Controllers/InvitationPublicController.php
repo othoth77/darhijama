@@ -2,10 +2,8 @@
 
 namespace Modules\Invitations\Http\Controllers;
 
-use App\Analytics\VisitorFingerprint;
 use App\Events\InvitationViewed;
 use App\Events\PublicPageViewed;
-use App\Support\WhatsApp\WhatsAppLinkBuilder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,10 +12,13 @@ use Illuminate\Validation\Rule;
 use Modules\Invitations\Enums\InvitationStatus;
 use Modules\Invitations\Enums\RsvpStatus;
 use Modules\Invitations\Models\Invitation;
+use Modules\Invitations\Services\InvitationExternalUrlService;
+use Modules\Invitations\Services\InvitationPublicCache;
 use Modules\Invitations\Services\InvitationPublicLinkService;
 use Modules\Invitations\Services\InvitationQrCodeService;
 use Modules\Invitations\Services\SubmitRsvpService;
-use Modules\Media\Services\MediaService;
+use Mythos\Core\Analytics\VisitorFingerprint;
+use Mythos\Core\WhatsApp\WhatsAppLinkBuilder;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
@@ -30,9 +31,11 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class InvitationPublicController extends Controller
 {
     public function __construct(
-        private readonly MediaService $mediaService,
         private readonly InvitationPublicLinkService $publicLinkService,
         private readonly InvitationQrCodeService $qrCodeService,
+        private readonly InvitationPublicCache $publicCache,
+        private readonly InvitationExternalUrlService $externalUrls,
+        private readonly SubmitRsvpService $submitRsvp,
         private readonly VisitorFingerprint $fingerprint,
     ) {}
 
@@ -44,26 +47,34 @@ class InvitationPublicController extends Controller
         PublicPageViewed::dispatch('invitation', $visitorHash, 'invitation', $invitation->id);
         InvitationViewed::dispatch($invitation->id, $visitorHash);
 
-        $invitation->load([
-            'media' => fn ($query) => $query->orderBy('order'),
-            'programSteps',
-        ]);
+        return $this->render($invitation);
+    }
 
-        $images = $invitation->media->where('type', 'image')->values()
-            ->map(fn ($media) => ['url' => $this->mediaService->url($media->path, $media->disk), 'id' => $media->id])
-            ->values();
-        $video = $invitation->media->firstWhere('type', 'video');
-        $music = $invitation->media->firstWhere('type', 'audio');
+    public function preview(Request $request, string $token): View
+    {
+        $invitation = Invitation::query()->where('public_token', $token)->firstOrFail();
+        abort_unless($request->user()?->can('view', $invitation), 403);
 
+        return $this->render($invitation);
+    }
+
+    private function render(Invitation $invitation): View
+    {
+        $cached = $this->publicCache->data($invitation);
         $publicUrl = $this->publicLinkService->show($invitation);
 
         return view('invitations::public.show', [
             'invitation' => $invitation,
-            'heroUrl' => $images->first()['url'] ?? null,
-            'gallery' => $images,
-            'videoUrl' => $video ? $this->mediaService->url($video->path, $video->disk) : null,
-            'musicUrl' => $music ? $this->mediaService->url($music->path, $music->disk) : null,
-            'programSteps' => $invitation->programSteps,
+            'heroUrl' => $cached['images']->first()['url'] ?? null,
+            'gallery' => $cached['images'],
+            'videoUrl' => $cached['video_url'],
+            'musicUrl' => $cached['audio_url'],
+            'externalVideoUrl' => $this->externalUrls->video($invitation->external_video_url),
+            'externalAudioUrl' => $this->externalUrls->audio($invitation->external_audio_url),
+            'mapsEmbedUrl' => $this->externalUrls->maps($invitation->maps_embed_url),
+            'facebookUrl' => $this->externalUrls->facebook($invitation->facebook_url),
+            'instagramUrl' => $this->externalUrls->instagram($invitation->instagram_url),
+            'programSteps' => $cached['program_steps'],
             'publicUrl' => $publicUrl,
             'qrUrl' => $this->publicLinkService->qr($invitation),
             'rsvpUrl' => $this->publicLinkService->rsvp($invitation),
@@ -80,12 +91,19 @@ class InvitationPublicController extends Controller
         $data = $request->validate([
             'status' => ['required', Rule::enum(RsvpStatus::class)],
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:30'],
+            'phone' => ['nullable', 'string', 'max:30', 'regex:/^\+?[0-9][0-9\s().-]{5,28}[0-9]$/'],
             'guests_count' => ['nullable', 'integer', 'min:0', 'max:20'],
             'comment' => ['nullable', 'string', 'max:1000'],
+            'website' => ['nullable', 'max:0'],
         ]);
 
-        app(SubmitRsvpService::class)->execute($invitation, $data);
+        $response = $this->submitRsvp->execute(
+            $invitation,
+            $data,
+            $this->fingerprint->fromRequest($request),
+            $request->session()->get("rsvp_correction.{$invitation->id}"),
+        );
+        $request->session()->put("rsvp_correction.{$invitation->id}", $response->correction_token);
 
         return back()->with('rsvp_success', true)->withFragment('rsvp');
     }

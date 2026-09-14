@@ -19,6 +19,10 @@
 
         <form method="POST" action="{{ $rsvpUrl }}" class="mt-8 space-y-5" x-data="{ submitting: false }" @submit="submitting = true">
             @csrf
+            <div class="absolute -left-[10000px]" aria-hidden="true">
+                <label for="rsvp-website">Site web</label>
+                <input type="text" id="rsvp-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
 
             <fieldset>
                 <legend class="font-sans text-sm font-medium text-white/90">Serez-vous présent(e) ?</legend>

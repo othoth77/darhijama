@@ -4,7 +4,8 @@ namespace Modules\Invitations\Services;
 
 use Illuminate\Support\Facades\Cache;
 use Modules\Invitations\Models\Invitation;
-use Modules\Media\Services\MediaService;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
+use Throwable;
 
 class InvitationPublicCache
 {
@@ -31,9 +32,13 @@ class InvitationPublicCache
             'programSteps',
         ]);
 
-        $media = $invitation->media->filter(
-            fn ($item) => $this->mediaService->exists($item->path, $item->disk),
-        );
+        $media = $invitation->media->filter(function ($item): bool {
+            try {
+                return $this->mediaService->exists($item->path, $item->disk);
+            } catch (Throwable) {
+                return false;
+            }
+        });
         $images = $media->where('type', 'image')->values()
             ->map(fn ($item) => [
                 'url' => $this->mediaService->url($item->path, $item->disk),

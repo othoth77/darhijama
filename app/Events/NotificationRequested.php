@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
-use App\Notifications\NotificationMessage;
 use Illuminate\Foundation\Events\Dispatchable;
+use Mythos\Core\Notifications\NotificationMessage;
 
 class NotificationRequested
 {

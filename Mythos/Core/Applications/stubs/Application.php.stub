@@ -1,0 +1,7 @@
+<?php
+
+namespace {{ namespace }};
+
+use Mythos\Core\Applications\AbstractApplication;
+
+class Application extends AbstractApplication {}

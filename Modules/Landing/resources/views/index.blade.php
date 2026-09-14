@@ -8,9 +8,9 @@
         description="Votre mariage mérite une invitation aussi unique que votre histoire. Invitation digitale élégante et personnalisée, à partir de {{ $offerPrice }} {{ $offerCurrency }}."
         :canonical="route('landing.index')"
     />
-    <script type="application/ld+json">
-        {!! json_encode([
-            '@context' => 'https://schema.org',
+    @php
+        $structuredData = [
+            (chr(64).'context') => 'https://schema.org',
             '@type' => 'Service',
             'name' => 'Notre Jour — Invitations digitales',
             'description' => 'Création d’invitations digitales de mariage personnalisées.',
@@ -21,8 +21,9 @@
                 'price' => $offerPrice,
                 'priceCurrency' => 'TND',
             ],
-        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
-    </script>
+        ];
+    @endphp
+    <x-shared.structured-data :data="$structuredData" />
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=playfair-display:600,700|inter:400,500,600,700&display=swap" rel="stylesheet" />

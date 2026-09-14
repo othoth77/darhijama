@@ -2,7 +2,6 @@
 
 namespace Modules\Orders\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,6 +10,7 @@ use Modules\Invitations\Models\Invitation;
 use Modules\Orders\Database\Factories\OrderFactory;
 use Modules\Orders\Enums\OrderStatus;
 use Modules\Templates\Models\Template;
+use Mythos\Core\Identity\Models\User;
 
 class Order extends Model
 {

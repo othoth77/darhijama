@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Analytics\Models\WhatsappClickEvent;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mythos\Core\Analytics\Models\WhatsappClickEvent;
 use Tests\TestCase;
 
 class AnalyticsTrackingEndpointTest extends TestCase

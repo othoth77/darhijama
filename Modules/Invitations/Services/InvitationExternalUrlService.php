@@ -39,6 +39,16 @@ class InvitationExternalUrlService
         ]);
     }
 
+    public function facebook(?string $url): ?string
+    {
+        return $this->safe($url, ['facebook.com']);
+    }
+
+    public function instagram(?string $url): ?string
+    {
+        return $this->safe($url, ['instagram.com']);
+    }
+
     private function safe(?string $url, array $hosts): ?string
     {
         if (blank($url)) {

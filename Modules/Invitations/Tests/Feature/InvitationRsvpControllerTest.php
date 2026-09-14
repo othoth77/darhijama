@@ -67,6 +67,22 @@ class InvitationRsvpControllerTest extends TestCase
         $this->assertDatabaseCount('rsvp_responses', 0);
     }
 
+    public function test_rsvp_submission_rejects_an_invalid_phone_number(): void
+    {
+        $invitation = Invitation::factory()->create([
+            'status' => InvitationStatus::Publie,
+            'published_at' => now(),
+        ]);
+
+        $this->post("/i/{$invitation->public_token}/rsvp", [
+            'status' => 'present',
+            'name' => 'Sami Ben Ali',
+            'phone' => 'call me tomorrow',
+        ])->assertSessionHasErrors('phone');
+
+        $this->assertDatabaseCount('rsvp_responses', 0);
+    }
+
     public function test_rsvp_submission_fails_for_a_non_published_invitation(): void
     {
         $invitation = Invitation::factory()->create([

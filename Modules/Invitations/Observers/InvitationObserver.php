@@ -4,7 +4,7 @@ namespace Modules\Invitations\Observers;
 
 use Modules\Invitations\Models\Invitation;
 use Modules\Invitations\Services\InvitationPublicCache;
-use Modules\Media\Services\MediaService;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
 
 /**
  * Supprime uniquement les lignes Media rattachées (jamais les fichiers physiques

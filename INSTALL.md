@@ -102,3 +102,13 @@ exécution ne remplace pas la validation MySQL de la CI.
 
 Le dépôt contient `package-lock.json`; utiliser `npm ci` pour toute installation reproductible et
 réserver `npm install` aux mises à jour intentionnelles de dépendances.
+
+## Durcissement production
+
+Avant déploiement, suivre `docs/PRODUCTION_CHECKLIST.md`. La limite d'upload commune est 100 MB : définir `upload_max_filesize=100M` et `post_max_size=100M` dans le `php.ini` de PHP-FPM. Configurer `TRUSTED_HOSTS`, `TRUSTED_PROXIES` et `SESSION_SECURE_COOKIE=true`, puis valider la configuration HTTPS fournie avec `nginx -t`.
+
+Les listeners analytics et notifications nécessitent un worker :
+
+```bash
+php artisan queue:work --queue=default,notifications --tries=3
+```

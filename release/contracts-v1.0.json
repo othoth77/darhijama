@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0",
+    "algorithm": "sha256",
+    "contracts": {
+        "Mythos/Core/Analytics/Contracts/AnalyticsRecorder.php": "9b908f6ea685f9cad3d04129141c90680499ca2b784309ff43234287c5765c82",
+        "Mythos/Core/Applications/Contracts/ApplicationRegistry.php": "c9e288ee972bc53a72a1fb4a25e249d524a72a194c216e0a46a13db38f095a72",
+        "Mythos/Core/Applications/Contracts/MythosApplication.php": "2883b5af0fb1d36d2477aa0b721d61eda2fed9ad70cb45ef69bbe4b5303a1160",
+        "Mythos/Core/Audit/Contracts/AuditLogger.php": "d21446a708e56593f524f2d1d6baa7d34b8376c87796599c0b058ac52fd82338",
+        "Mythos/Core/Media/Contracts/MediaManager.php": "8118fc7ce9c4c71ac40cb9400f5e51037e384fcb5f0aeb3e187f89d3ab34ea16",
+        "Mythos/Core/Notifications/Contracts/NotificationChannel.php": "800d8c4b523709a71da238796e9481c7496d61602905fd84f1f80724395e92c2",
+        "Mythos/Core/Notifications/Contracts/NotificationDispatcher.php": "027cc456317967949c4f6aac6b4bf47a3d88346d5abdf71584ae3f997884b433",
+        "Mythos/Core/Notifications/Contracts/NotificationQueue.php": "644cb5b758f69995ddd5ec692c57dfd90ca88cb342244c9775048c5d319f400a",
+        "Mythos/Core/PublicLinks/Contracts/PublicLinkGenerator.php": "a6ef5328108c2ce583d6393992eb056c7efdfccb52b1663160595996eaa3d2ce",
+        "Mythos/Core/QrCode/Contracts/QrCodeGenerator.php": "64dc218c90f38ba14f31398dc99a7f661f9ec4d750bcfcbff0373bc4e2aa6b2a"
+    }
+}

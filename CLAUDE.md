@@ -54,7 +54,7 @@ de Filament depuis leur propre `ServiceProvider` (voir `ARCHITECTURE.md` §6) �
 - Un Service ne parle jamais directement à Eloquent : il passe par une interface de Repository
   (`Repositories/Contracts/*Interface.php`), liée à son implémentation dans le ServiceProvider du
   module.
-- Toute construction de lien WhatsApp passe par `App\Support\WhatsApp\WhatsAppLinkBuilder` (ou le
+- Toute construction de lien WhatsApp passe par `Mythos\Core\WhatsApp\WhatsAppLinkBuilder` (ou le
   helper `whatsapp_link()`) — jamais de `wa.me/...` codé en dur dans une vue.
 - Tout upload de média passe par le module `Media` (S3/OVH), jamais d'écriture disque locale en
   production.

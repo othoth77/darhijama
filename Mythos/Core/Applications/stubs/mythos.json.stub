@@ -1,0 +1,33 @@
+{
+    "name": "{{ application }}",
+    "slug": "{{ slug }}",
+    "namespace": "{{ json_namespace }}\\",
+    "version": "0.1.0",
+    "description": "Mythos OS application.",
+    "application_class": "{{ json_namespace }}\\Application",
+    "service_provider": "{{ json_namespace }}\\Providers\\{{ application }}ServiceProvider",
+    "core_capabilities": [],
+    "permissions": [],
+    "routes": [
+        {
+            "path": "routes/web.php",
+            "middleware": ["web"]
+        }
+    ],
+    "migrations": ["database/migrations"],
+    "config": [
+        {
+            "key": "applications.{{ slug }}",
+            "path": "config/application.php"
+        }
+    ],
+    "view_namespace": "{{ slug }}",
+    "views": "resources/views",
+    "translations": "resources/lang",
+    "commands": [],
+    "event_listeners": [],
+    "assets": [],
+    "compatibility": {
+        "mythos_core": "^1.0"
+    }
+}

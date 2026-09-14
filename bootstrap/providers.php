@@ -5,10 +5,12 @@ use App\Providers\AppServiceProvider;
 use App\Providers\AuditNotificationServiceProvider;
 use App\Providers\FeatureFlagServiceProvider;
 use App\Providers\Filament\AdminPanelProvider;
+use Mythos\Core\Providers\MythosCoreServiceProvider;
 use Nwidart\Modules\LaravelModulesServiceProvider;
 
 return [
     AppServiceProvider::class,
+    MythosCoreServiceProvider::class,
     AnalyticsServiceProvider::class,
     AuditNotificationServiceProvider::class,
     FeatureFlagServiceProvider::class,

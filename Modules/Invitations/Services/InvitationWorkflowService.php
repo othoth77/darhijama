@@ -9,6 +9,8 @@ use Modules\Invitations\Models\Invitation;
 
 class InvitationWorkflowService
 {
+    public function __construct(private readonly InvitationBusinessValidator $validator) {}
+
     public function publish(Invitation $invitation): Invitation
     {
         if ($invitation->isPublished()) {
@@ -16,6 +18,7 @@ class InvitationWorkflowService
         }
 
         $this->assertTransition($invitation, InvitationStatus::Publie);
+        $this->validator->validateForPublication($invitation);
 
         $invitation->forceFill([
             'status' => InvitationStatus::Publie,

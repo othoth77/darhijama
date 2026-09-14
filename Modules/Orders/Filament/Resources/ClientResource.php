@@ -2,7 +2,6 @@
 
 namespace Modules\Orders\Filament\Resources;
 
-use App\Filament\Components\SharedTableColumns;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -11,6 +10,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Modules\Orders\Filament\Resources\ClientResource\Pages;
 use Modules\Orders\Models\Client;
+use Mythos\Core\UI\Filament\SharedTableColumns;
 
 class ClientResource extends Resource
 {

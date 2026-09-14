@@ -4,6 +4,31 @@ Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
 ## [Unreleased]
 
+## [1.0.0] — 2026-07-28
+
+### Added
+
+- Mythos OS Core platform boundaries and stable infrastructure contracts.
+- Formal application SDK, strict manifests, explicit registry, lifecycle hooks, capability declarations, and Artisan scaffolding.
+- Notre Jour reference application registration with preserved business behavior.
+- Stable API metadata, contract compatibility snapshots, official deprecation tooling, LTS policy, release manifest, and release engineering documentation.
+
+### Compatibility
+
+- PHP `^8.3`, Laravel `^12.0`, Filament `^3.3`.
+- Existing Notre Jour routes, database schema, public links, tokens, QR paths, RSVP behavior, media paths, policies, and APIs remain compatible.
+- Mythos Core public contracts are stable for the full v1 release line.
+
+### Phase 2.2 — Invitations Production Completion (2026-07-28)
+
+- Finalisation du cycle brouillon, publication, archive et restauration avec validation centralisée.
+- Ajout de l’aperçu signé, duplication, régénération QR et actions Filament complètes.
+- Ajout de l’édition du programme, de la galerie, de l’audio, de la vidéo et des informations publiques.
+- Durcissement des URLs externes, médias manquants, cache et invalidation.
+- Protection RSVP par rate limiting, honeypot, déduplication et correction sûre.
+- Ajout des notifications RSVP administratives, permissions et couverture Phase 2.2.
+- Suite complète validée sur la base SQLite dédiée aux tests.
+
 ### Phase 2.1 — Landing & Templates Completion (2026-07-28)
 
 - Connexion de Landing au catalogue actif via `App\\Contracts\\Templates\\TemplateCatalog`.
@@ -248,7 +273,7 @@ réelle) :
    existent réellement). À réintroduire quand un module en aura besoin.
 3. **`MediaServiceProvider`** : `Relation::enforceMorphMap()` imposait la présence dans la table de
    correspondance à **toute** relation polymorphe de l'application, y compris celle de
-   `spatie/laravel-permission` (`model_has_roles` sur `App\Models\User`), faisant échouer
+   `spatie/laravel-permission` (`model_has_roles` sur `Mythos\Core\Identity\Models\User`), faisant échouer
    `php artisan db:seed` à l'attribution du rôle admin. Remplacé par `Relation::morphMap()` (non
    contraignant), qui ne fait que déclarer nos deux alias (`template`, `invitation`) sans affecter les
    autres relations polymorphes de l'application.
@@ -348,10 +373,10 @@ dans `AUDIT_PHASE_0.md`. Corrections appliquées :
 - 13 modules scaffoldés sous `Modules/` : 6 core actifs (Landing, Templates, Orders, Invitations,
   Admin, Media) et 7 futurs désactivés (RSVP, Guestbook, Timeline, Notifications, AI, Singles, Api),
   chacun avec `module.json`, `composer.json`, `ServiceProvider`, `routes/web.php`, `config/config.php`.
-- `App\Support\WhatsApp\WhatsAppLinkBuilder` + helper global `whatsapp_link()`.
+- `Mythos\Core\WhatsApp\WhatsAppLinkBuilder` + helper global `whatsapp_link()`.
 - `App\Providers\FeatureFlagServiceProvider` déclarant les flags Pennant depuis `config/features.php`.
 - `App\Providers\Filament\AdminPanelProvider` (panneau back-office unique).
-- `App\Http\Middleware\EnsureUserIsAdmin` + `App\Models\User` (rôles via spatie/laravel-permission,
+- `Mythos\Core\Identity\Http\Middleware\EnsureUserIsAdmin` + `Mythos\Core\Identity\Models\User` (rôles via spatie/laravel-permission,
   `FilamentUser`).
 - Migrations socle Laravel (`users`, `sessions`, `cache`, `jobs`, `failed_jobs`).
 - `database/seeders/DatabaseSeeder.php` (rôle admin + premier compte opérateur).

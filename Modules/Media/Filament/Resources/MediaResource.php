@@ -2,14 +2,14 @@
 
 namespace Modules\Media\Filament\Resources;
 
-use App\Filament\Components\SharedTableColumns;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Modules\Media\Filament\Resources\MediaResource\Pages;
-use Modules\Media\Models\Media;
+use Mythos\Core\Media\Models\Media;
+use Mythos\Core\UI\Filament\SharedTableColumns;
 
 /**
  * Gestion des lignes de métadonnées uniquement. La suppression ne supprime

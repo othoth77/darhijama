@@ -1,5 +1,9 @@
 # ARCHITECTURE.md — Notre Jour
 
+> Mythos OS Core boundaries and dependency rules are defined in
+> `docs/MYTHOS_OS_ARCHITECTURE.md`. This document retains Notre Jour domain
+> decisions and historical context.
+
 ## 1. Principes
 
 - **Architecture modulaire** via `nwidart/laravel-modules` : chaque domaine métier est un module
@@ -24,11 +28,11 @@
 | Models | Eloquent, règles métier | `Invitation`, `Order` |
 | Repositories | Interfaces + implémentations Eloquent | `InvitationRepositoryInterface` / `EloquentInvitationRepository` |
 | Policies | Autorisations (spatie/laravel-permission) | `InvitationPolicy` |
-| Infrastructure transverse | S3 (Media), WhatsApp, QR, Maps | `App\Support\WhatsApp\WhatsAppLinkBuilder` |
+| Infrastructure transverse | S3 (Media), WhatsApp, QR, Maps | `Mythos\Core\WhatsApp\WhatsAppLinkBuilder` |
 
 ### Service Media partagé
 
-`Modules\Media\Services\MediaService` est l’unique point d’entrée pour valider, nommer, stocker,
+`Mythos\Core\Media\Services\MediaService` est l’unique point d’entrée pour valider, nommer, stocker,
 supprimer et exposer les URLs des fichiers. Il accepte les disques locaux Laravel et les disques
 S3-compatibles, crée optionnellement les métadonnées polymorphes et compense l’upload si leur création
 échoue. Les profils de validation et le disque par défaut sont centralisés dans
@@ -139,12 +143,15 @@ lorsqu’un module en fournira réellement.
 
 - URL publique d'invitation basée sur un token opaque (`public_token`, ULID/base62), jamais sur un id
   auto-incrémenté seul.
-- Les URLs publiques fondées sur un token passent par `App\Support\PublicLinks\PublicLinkService`.
-- Les QR Codes passent par `App\Support\QrCode\QrCodeService` ; les modules fournissent seulement l'URL publique et le chemin historique via un adaptateur local.
+- Les URLs publiques fondées sur un token passent par `Mythos\Core\PublicLinks\PublicLinkService`.
+- Les QR Codes passent par `Mythos\Core\QrCode\QrCodeService` ; les modules fournissent seulement l'URL publique et le chemin historique via un adaptateur local.
 - Le fichier QR constitue un cache régénérable : écriture temporaire, sauvegarde de l'ancien fichier, promotion atomique et restauration en cas d'échec.
 - Back-office protégé par authentification Filament + rôle `admin` (spatie/laravel-permission),
   extensible à d'autres rôles sans migration lourde.
 - HTTPS forcé en production (`AppServiceProvider`).
+- Les opérations analytics et les notifications RSVP sont des listeners en queue, exécutés après commit.
+- Les réponses HTTP applicatives ajoutent les en-têtes défensifs communs ; Nginx porte la CSP et HSTS en production.
+- Les données Schema.org passent par le composant Blade partagé `shared.structured-data`, avec encodage JSON strict.
 
 ## 11. Décisions d'ajustement par rapport au rapport d'analyse initial
 

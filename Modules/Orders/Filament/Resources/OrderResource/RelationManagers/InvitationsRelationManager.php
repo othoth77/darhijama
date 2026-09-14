@@ -2,9 +2,6 @@
 
 namespace Modules\Orders\Filament\Resources\OrderResource\RelationManagers;
 
-use App\Filament\Components\SharedActions;
-use App\Filament\Components\SharedTableColumns;
-use App\Filament\Components\StatusComponents;
 use Filament\Actions\CreateAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
@@ -18,6 +15,9 @@ use Modules\Invitations\Models\Invitation;
 use Modules\Invitations\Services\CreateInvitationService;
 use Modules\Invitations\Services\PublishInvitationService;
 use Modules\Orders\Models\Order;
+use Mythos\Core\UI\Filament\SharedActions;
+use Mythos\Core\UI\Filament\SharedTableColumns;
+use Mythos\Core\UI\Filament\StatusComponents;
 
 /**
  * 1 commande -> N invitations (v2 pt. 4). La création passe par

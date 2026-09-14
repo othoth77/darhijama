@@ -4,7 +4,7 @@
  * Source unique de vérité pour le canal WhatsApp — objectif business n°1 du MVP :
  * transformer chaque visiteur en conversation WhatsApp.
  *
- * Toute vue ou contrôleur doit passer par App\Support\WhatsApp\WhatsAppLinkBuilder
+ * Toute vue ou contrôleur doit passer par Mythos\Core\WhatsApp\WhatsAppLinkBuilder
  * plutôt que de reconstruire un lien wa.me à la main.
  */
 

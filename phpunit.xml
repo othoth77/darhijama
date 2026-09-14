@@ -12,8 +12,12 @@
             <directory>tests/Feature</directory>
         </testsuite>
         <testsuite name="Modules">
+            <directory>Applications/*/Tests/Unit</directory>
+            <directory>Applications/*/Tests/Feature</directory>
             <directory>Modules/*/Tests/Unit</directory>
             <directory>Modules/*/Tests/Feature</directory>
+            <directory>Mythos/Core/*/Tests/Unit</directory>
+            <directory>Mythos/Core/*/Tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -26,8 +30,8 @@
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_STORE" value="array"/>
-        <env name="DB_CONNECTION" value="mysql"/>
-        <env name="DB_DATABASE" value="notrejour_test"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value="database/notrejour_test.sqlite"/>
         <env name="FILESYSTEM_DISK" value="local"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="PENNANT_STORE" value="array"/>

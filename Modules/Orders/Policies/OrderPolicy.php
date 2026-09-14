@@ -2,8 +2,8 @@
 
 namespace Modules\Orders\Policies;
 
-use App\Models\User;
 use Modules\Orders\Models\Order;
+use Mythos\Core\Identity\Models\User;
 
 class OrderPolicy
 {

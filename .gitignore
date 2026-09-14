@@ -3,6 +3,7 @@
 /public/build
 /public/hot
 /public/storage
+/database/notrejour_test.sqlite
 /storage/*.key
 /storage/pail
 /vendor

@@ -7,8 +7,8 @@ use App\Contracts\Templates\TemplateSummary;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Modules\Media\Services\MediaService;
 use Modules\Templates\Models\Template;
+use Mythos\Core\Media\Contracts\MediaManager as MediaService;
 
 class EloquentTemplateCatalog implements TemplateCatalog
 {

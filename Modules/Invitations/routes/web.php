@@ -24,6 +24,10 @@ Route::middleware(['web'])->group(function () {
 
 Route::middleware(['web'])->prefix('i')->name('invitations.public.')->group(function () {
     Route::get('/{token}', [InvitationPublicController::class, 'show'])->name('show');
-    Route::post('/{token}/rsvp', [InvitationPublicController::class, 'rsvp'])->name('rsvp');
+    Route::post('/{token}/rsvp', [InvitationPublicController::class, 'rsvp'])->middleware('throttle:rsvp')->name('rsvp');
     Route::get('/{token}/qr', [InvitationPublicController::class, 'qrCode'])->name('qr');
 });
+
+Route::get('/admin/invitations/preview/{token}', [InvitationPublicController::class, 'preview'])
+    ->middleware(['web', 'auth', 'signed'])
+    ->name('invitations.preview');
