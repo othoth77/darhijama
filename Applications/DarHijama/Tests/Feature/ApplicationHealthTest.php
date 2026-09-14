@@ -10,7 +10,7 @@ class ApplicationHealthTest extends TestCase
     {
         $this->get('http://darhijama.tn/')
             ->assertOk()
-            ->assertSee('DAR HIJAMA')
+            ->assertSee('دار الحجامة')
             ->assertDontSee('Notre Jour');
 
         $this->get('http://notrejour.tn/')

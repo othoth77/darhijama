@@ -46,8 +46,15 @@ class PublicSiteController extends Controller
             fn ($template) => ['location' => $template->detailUrl, 'priority' => '0.8'],
         ));
 
+        // The XML declaration is built here, not written literally inside the
+        // Blade file: an inline XML processing instruction inside a raw echo
+        // confuses Blade's compiler into leaving the whole expression
+        // uncompiled (it mistakes the embedded PHP-style tag markers for a
+        // raw PHP passthrough block), which produced a parse error at runtime.
+        $xmlDeclaration = '<?xml version="1.0" encoding="UTF-8"?>';
+
         return response()
-            ->view('landing::seo.sitemap', compact('urls'))
+            ->view('landing::seo.sitemap', compact('urls', 'xmlDeclaration'))
             ->header('Content-Type', 'application/xml; charset=UTF-8');
     }
 }

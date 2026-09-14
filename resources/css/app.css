@@ -11,6 +11,22 @@
     --color-brand-gold: #c9a24b;
     --font-display: "Playfair Display", ui-serif, Georgia, serif;
     --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+    /*
+     * Dar Hijama — charte "Piste 1", officielle depuis le 2026-09-14 (décision
+     * propriétaire, résout CTR-1). Source : othoth77/othdesign,
+     * hijama/darhijama-site/assets/dar-hijama-piste1-charte-corrigee.txt,
+     * commit 639070fc46f72ed2b19c6f85ddad6903166ae129. Ajoutés en plus des
+     * tokens Notre Jour ci-dessus (jamais retirés) — Tailwind `green-600` /
+     * `teal-500` / `gray-500` correspondent déjà exactement au vert et au
+     * turquoise de la charte ; ces alias existent pour la lisibilité des
+     * vues dar-hijama::* uniquement.
+     */
+    --color-dar-hijama-green: #16A34A;
+    --color-dar-hijama-turquoise: #14B8A6;
+    --color-dar-hijama-grey: #6B7280;
+    --color-dar-hijama-ink: #2F3437;
+    --font-dar-hijama-arabic: "Cairo", "Noto Sans Arabic", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
