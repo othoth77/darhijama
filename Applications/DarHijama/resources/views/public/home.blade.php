@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="حجامة منزلية بمواعيد منظمة في تونس الكبرى (تونس، أريانة، بن عروس، منوبة). تواصل معنا عبر واتساب لحجز موعدك.">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#16A34A">
     <title>الحجامة المنزلية في تونس الكبرى | دار الحجامة</title>
     <link rel="canonical" href="https://{{ config('applications.dar-hijama.public_hosts.primary') }}/">
     <link rel="icon" href="{{ asset('images/brand/favicon-64.png') }}" type="image/png">
@@ -46,241 +47,260 @@
     }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    {{-- fonts.bunny.net is the only font host the production CSP allows (style-src/font-src). --}}
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link href="https://fonts.bunny.net/css?family=cairo:400,600,700,800,900|manrope:700,800&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-white text-dar-hijama-ink antialiased font-dar-hijama-arabic">
+<body class="min-h-screen bg-white pb-20 font-dar-hijama-arabic text-dar-hijama-ink antialiased md:pb-0">
 
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-lg focus:bg-dar-hijama-green focus:px-4 focus:py-2 focus:text-white">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-lg focus:bg-dar-hijama-green-deep focus:px-4 focus:py-2 focus:text-white">
         تخطَّ إلى المحتوى
     </a>
 
-    {{-- HEADER --}}
-    <header class="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-            <a href="#main" class="flex items-center gap-2">
-                <img src="{{ asset('images/brand/dar-hijama-piste1-icone.svg') }}" alt="شعار دار الحجامة" class="h-9 w-9">
-                <span class="text-lg font-extrabold text-dar-hijama-ink">دار الحجامة</span>
-            </a>
-            <nav class="hidden items-center gap-6 text-sm font-semibold text-gray-600 md:flex" aria-label="التنقّل الرئيسي">
-                <a href="#services" class="hover:text-dar-hijama-green">خدماتنا</a>
-                <a href="{{ route('dar-hijama.articles.index') }}" class="hover:text-dar-hijama-green">المقالات</a>
-                <a href="#faq" class="hover:text-dar-hijama-green">الأسئلة الشائعة</a>
-                <a href="#contact" class="hover:text-dar-hijama-green">تواصل معنا</a>
-            </nav>
-            <a
-                href="{{ $whatsappBookingUrl }}"
-                target="_blank" rel="noopener"
-                x-data="whatsappCta('header')" @click="track()"
-                class="rounded-lg bg-dar-hijama-green px-4 py-2 text-sm font-bold text-white transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-dar-hijama-green focus:ring-offset-2"
-            >
-                احجز عبر واتساب
-            </a>
-        </div>
-    </header>
+    @include('dar-hijama::public.partials.header')
 
     <main id="main">
-        {{-- HERO --}}
-        <section class="border-b border-gray-100 bg-gradient-to-b from-green-50/60 to-white">
-            <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
-                <div>
-                    <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1 text-xs font-bold tracking-widest text-dar-hijama-green">
-                        تونس الكبرى
+        {{-- 1. HERO --}}
+        <section class="dh-hero-bg relative overflow-hidden" aria-labelledby="hero-title">
+            <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 pb-20 pt-10 sm:px-8 sm:pt-14 lg:grid-cols-12 lg:gap-10 lg:pb-28 lg:pt-20">
+                <div class="lg:col-span-6">
+                    <p class="inline-flex items-center gap-2 rounded-full border border-dar-hijama-green/20 bg-white/80 px-3.5 py-1.5 text-sm font-bold text-dar-hijama-green-deep">
+                        <span class="h-1.5 w-1.5 rounded-full bg-dar-hijama-green" aria-hidden="true"></span>
+                        خدمة منزلية · تونس الكبرى
                     </p>
-                    <h1 class="max-w-xl text-4xl font-extrabold leading-tight text-dar-hijama-ink sm:text-5xl">
-                        الحجامة المنزلية<br>في تونس الكبرى
-                    </h1>
-                    <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-                        حجامة منزلية بمواعيد منظمة.
-                    </p>
+                    <h1 id="hero-title" class="mt-6 text-4xl font-black leading-[1.2] tracking-tight text-dar-hijama-ink sm:text-6xl lg:text-[4.25rem]">الحجامة المنزلية <span class="block text-dar-hijama-green-deep">في تونس الكبرى</span></h1>
+                    <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600 sm:text-xl">نوصلك إلى منزلك بمواعيد منظمة.</p>
 
-                    <div class="mt-10 flex flex-wrap gap-4">
+                    <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                         <a
                             href="{{ $whatsappBookingUrl }}"
                             target="_blank" rel="noopener"
                             x-data="whatsappCta('hero')" @click="track()"
-                            class="rounded-lg bg-dar-hijama-green px-6 py-3 font-bold text-white transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-dar-hijama-green focus:ring-offset-2"
-                        >
-                            احجز موعدك
-                        </a>
+                            class="dh-btn dh-btn-primary px-8 py-4 text-lg"
+                        >احجز موعدك</a>
                         <a
-                            href="#contact"
-                            class="rounded-lg border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-700 transition hover:border-dar-hijama-green hover:text-dar-hijama-green focus:outline-none focus:ring-2 focus:ring-dar-hijama-green focus:ring-offset-2"
+                            href="{{ $whatsappContactUrl }}"
+                            target="_blank" rel="noopener"
+                            x-data="whatsappCta('hero-contact')" @click="track()"
+                            class="dh-btn dh-btn-secondary px-7 py-4 text-lg"
                         >
-                            تواصل معنا
+                            @include('dar-hijama::public.partials.icon-chat', ['class' => 'h-5 w-5 text-dar-hijama-green-deep'])
+                            تواصل معنا عبر واتساب
                         </a>
                     </div>
                 </div>
 
-                <div class="flex items-center justify-center rounded-2xl border border-gray-100 bg-white p-10 shadow-sm">
-                    <img src="{{ asset('images/brand/dar-hijama-piste1-logo-principal.svg') }}" alt="شعار دار الحجامة" class="h-48 w-48 sm:h-56 sm:w-56">
+                <div class="lg:col-span-6">
+                    @include('dar-hijama::public.partials.hero-visual')
                 </div>
             </div>
         </section>
 
-        {{-- SERVICES --}}
-        <section id="services" class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
-            <div class="mx-auto max-w-2xl text-center">
-                <span class="text-xs font-bold uppercase tracking-widest text-dar-hijama-turquoise">خدماتنا</span>
-                <h2 class="mt-2 text-3xl font-extrabold text-dar-hijama-ink">حجامة منزلية في تونس الكبرى</h2>
-            </div>
-            <div class="mt-12 grid gap-6 sm:grid-cols-3">
-                <article class="rounded-xl border border-gray-200 bg-white p-6">
-                    <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-green-50 text-dar-hijama-green">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    </div>
-                    <h3 class="font-bold text-dar-hijama-ink">مواعيد منظمة</h3>
-                    <p class="mt-2 text-sm leading-6 text-gray-600">حجز وتأكيد الموعد بما يناسب وقتك.</p>
-                </article>
-                <article class="rounded-xl border border-gray-200 bg-white p-6">
-                    <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-green-50 text-dar-hijama-green">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7M5 10v10h14V10"/></svg>
-                    </div>
-                    <h3 class="font-bold text-dar-hijama-ink">زيارة منزلية</h3>
-                    <p class="mt-2 text-sm leading-6 text-gray-600">يصلك فريقنا في منزلك بمعدات معقّمة أحادية الاستخدام.</p>
-                </article>
-                <article class="rounded-xl border border-gray-200 bg-white p-6">
-                    <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-green-50 text-dar-hijama-green">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    </div>
-                    <h3 class="font-bold text-dar-hijama-ink">خصوصية تامة</h3>
-                    <p class="mt-2 text-sm leading-6 text-gray-600">بياناتك محفوظة ضمن صلاحيات وصول محدودة.</p>
-                </article>
-            </div>
+        {{-- 2. TRUST STRIP --}}
+        <section aria-label="مميزات الخدمة" class="border-y border-dar-hijama-ink/5 bg-white">
+            <ul class="mx-auto grid max-w-7xl divide-y divide-dar-hijama-ink/5 px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8">
+                @foreach ([
+                    ['title' => 'خدمة منزلية', 'text' => 'زيارة في منزلك', 'icon' => 'm2.25 12 8.954-8.955a1.126 1.126 0 0 1 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'],
+                    ['title' => 'مواعيد منظمة', 'text' => 'موعد يُؤكَّد معك مسبقًا', 'icon' => 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5'],
+                    ['title' => 'تونس الكبرى', 'text' => 'تونس · أريانة · بن عروس · منوبة', 'icon' => 'M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z'],
+                ] as $point)
+                    <li class="flex items-center gap-4 py-6 sm:justify-center sm:px-6 lg:py-8">
+                        <span class="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-dar-hijama-mint text-dar-hijama-green-deep">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-6 w-6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="{{ $point['icon'] }}"/></svg>
+                        </span>
+                        <div>
+                            <p class="text-lg font-bold text-dar-hijama-ink">{{ $point['title'] }}</p>
+                            <p class="text-sm text-gray-500">{{ $point['text'] }}</p>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
         </section>
 
-        {{-- HOW IT WORKS --}}
-        <section id="how-it-works" class="border-y border-gray-100 bg-gray-50/60">
-            <div class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
-                <div class="mx-auto max-w-2xl text-center">
-                    <span class="text-xs font-bold uppercase tracking-widest text-dar-hijama-turquoise">كيف نعمل</span>
-                    <h2 class="mt-2 text-3xl font-extrabold text-dar-hijama-ink">أربع خطوات بسيطة وواضحة</h2>
+        {{-- 3. HOW IT WORKS --}}
+        <section id="how-it-works" class="bg-dar-hijama-mist" aria-labelledby="how-title">
+            <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+                <div class="dh-reveal max-w-2xl">
+                    <p class="dh-eyebrow">خطوات بسيطة</p>
+                    <h2 id="how-title" class="mt-3 text-3xl font-black text-dar-hijama-ink sm:text-5xl">كيف تتم الخدمة؟</h2>
                 </div>
-                <ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                    <li class="relative rounded-xl bg-white p-6 shadow-sm">
-                        <span class="text-sm font-black text-dar-hijama-turquoise">01</span>
-                        <h3 class="mt-2 font-bold text-dar-hijama-ink">تواصل معنا</h3>
-                        <p class="mt-2 text-sm leading-6 text-gray-600">عبر واتساب.</p>
-                    </li>
-                    <li class="relative rounded-xl bg-white p-6 shadow-sm">
-                        <span class="text-sm font-black text-dar-hijama-turquoise">02</span>
-                        <h3 class="mt-2 font-bold text-dar-hijama-ink">استشارة أولية</h3>
-                        <p class="mt-2 text-sm leading-6 text-gray-600">نحدد نوع الجلسة الأنسب.</p>
-                    </li>
-                    <li class="relative rounded-xl bg-white p-6 shadow-sm">
-                        <span class="text-sm font-black text-dar-hijama-turquoise">03</span>
-                        <h3 class="mt-2 font-bold text-dar-hijama-ink">جلسة الحجامة</h3>
-                        <p class="mt-2 text-sm leading-6 text-gray-600">في موعدها، بمنزلك.</p>
-                    </li>
-                    <li class="relative rounded-xl bg-white p-6 shadow-sm">
-                        <span class="text-sm font-black text-dar-hijama-turquoise">04</span>
-                        <h3 class="mt-2 font-bold text-dar-hijama-ink">متابعة</h3>
-                        <p class="mt-2 text-sm leading-6 text-gray-600">بعد الجلسة عند الحاجة.</p>
-                    </li>
+                <ol class="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+                    @foreach ([
+                        ['title' => 'احجز موعدك', 'text' => 'راسلنا عبر واتساب واختر الوقت المناسب لك.'],
+                        ['title' => 'ننسق معك الموعد', 'text' => 'نؤكد معك التاريخ والساعة قبل الزيارة.'],
+                        ['title' => 'نصل إلى منزلك', 'text' => 'يصلك فريقنا في الموعد المتفق عليه.'],
+                    ] as $i => $step)
+                        <li class="dh-reveal relative border-t border-dar-hijama-ink/10 pt-8" style="transition-delay: {{ $i * 120 }}ms">
+                            <span class="absolute -top-px start-0 h-0.5 w-16 bg-dar-hijama-green" aria-hidden="true"></span>
+                            <span class="font-dar-hijama-latin text-5xl font-extrabold text-dar-hijama-green" aria-hidden="true">0{{ $i + 1 }}</span>
+                            <h3 class="mt-5 text-xl font-bold text-dar-hijama-ink sm:text-2xl">{{ $step['title'] }}</h3>
+                            <p class="mt-3 max-w-xs leading-7 text-gray-600">{{ $step['text'] }}</p>
+                        </li>
+                    @endforeach
                 </ol>
             </div>
         </section>
 
-        {{-- LATEST ARTICLES (internal linking) --}}
-        @if ($latestArticles->isNotEmpty())
-            <section class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
-                <div class="mx-auto max-w-2xl text-center">
-                    <span class="text-xs font-bold uppercase tracking-widest text-dar-hijama-turquoise">مقالات</span>
-                    <h2 class="mt-2 text-3xl font-extrabold text-dar-hijama-ink">أحدث المقالات</h2>
+        {{-- 4. SERVICE --}}
+        <section id="services" aria-labelledby="service-title">
+            <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:py-28">
+                <div class="dh-reveal">
+                    @include('dar-hijama::public.partials.service-visual')
                 </div>
-                <div class="mt-12 grid gap-6 sm:grid-cols-3">
-                    @foreach ($latestArticles as $article)
+                <div class="dh-reveal">
+                    <p class="dh-eyebrow">الخدمة</p>
+                    <h2 id="service-title" class="mt-3 text-3xl font-black text-dar-hijama-ink sm:text-5xl">الحجامة المنزلية</h2>
+                    <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+                        جلسة حجامة تتم في منزلك بدل التنقّل إلى مركز. تتواصل معنا عبر واتساب، نتفق معك على الموعد، ثم يصلك فريقنا بمعدات معقّمة أحادية الاستخدام.
+                    </p>
+                    <ul class="mt-8 space-y-4">
+                        @foreach ([
+                            'زيارة منزلية في تونس الكبرى',
+                            'موعد يُؤكَّد معك قبل الزيارة',
+                            'معدات معقّمة أحادية الاستخدام',
+                            'بياناتك محفوظة ضمن صلاحيات وصول محدودة',
+                        ] as $feature)
+                            <li class="flex items-start gap-3 text-dar-hijama-ink">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="mt-0.5 h-6 w-6 shrink-0 text-dar-hijama-green" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                                <span class="font-semibold">{{ $feature }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <div class="mt-10">
                         <a
-                            href="{{ route('dar-hijama.articles.show', $article) }}"
-                            class="block rounded-xl border border-gray-200 bg-white p-6 hover:border-dar-hijama-green"
-                        >
-                            @if ($article->category)
-                                <span class="text-xs font-bold uppercase tracking-widest text-dar-hijama-turquoise">
-                                    {{ $article->category->name }}
-                                </span>
-                            @endif
-                            <h3 class="mt-2 font-bold text-dar-hijama-ink">{{ $article->title }}</h3>
-                        </a>
-                    @endforeach
+                            href="{{ $whatsappBookingUrl }}"
+                            target="_blank" rel="noopener"
+                            x-data="whatsappCta('service')" @click="track()"
+                            class="dh-btn dh-btn-primary px-8 py-4 text-lg"
+                        >احجز موعدك</a>
+                    </div>
                 </div>
-                <div class="mt-8 text-center">
-                    <a href="{{ route('dar-hijama.articles.index') }}" class="font-semibold text-dar-hijama-green hover:underline">
-                        كل المقالات ←
-                    </a>
+            </div>
+        </section>
+
+        {{-- 5. COVERAGE / LOCAL SEO --}}
+        <section id="coverage" class="bg-gradient-to-b from-white to-dar-hijama-mist" aria-labelledby="coverage-title">
+            <div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-12 lg:items-center lg:py-28">
+                <div class="dh-reveal lg:col-span-5">
+                    <p class="dh-eyebrow">منطقة الخدمة</p>
+                    <h2 id="coverage-title" class="mt-3 text-3xl font-black text-dar-hijama-ink sm:text-5xl">نخدم تونس الكبرى</h2>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">
+                        نقدّم الحجامة المنزلية في ولايات تونس الكبرى الأربع. راسلنا عبر واتساب لتأكيد التغطية في منطقتك بالتحديد.
+                    </p>
+                </div>
+                <ul class="dh-reveal grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-dar-hijama-ink/10 bg-dar-hijama-ink/10 lg:col-span-7">
+                    @foreach (['تونس', 'أريانة', 'بن عروس', 'منوبة'] as $governorate)
+                        <li class="flex flex-col gap-4 bg-white p-6 sm:p-8">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-7 w-7 text-dar-hijama-turquoise" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+                            <div>
+                                <p class="text-sm text-gray-500">ولاية</p>
+                                <p class="text-2xl font-bold text-dar-hijama-ink sm:text-3xl">{{ $governorate }}</p>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </section>
+
+        {{-- 6. LATEST ARTICLES --}}
+        @if ($latestArticles->isNotEmpty())
+            <section id="articles" aria-labelledby="articles-title">
+                <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+                    <div class="dh-reveal flex flex-wrap items-end justify-between gap-6">
+                        <div>
+                            <p class="dh-eyebrow">المقالات</p>
+                            <h2 id="articles-title" class="mt-3 text-3xl font-black text-dar-hijama-ink sm:text-5xl">أحدث المقالات</h2>
+                        </div>
+                        <a href="{{ route('dar-hijama.articles.index') }}" class="dh-focus inline-flex items-center gap-2 rounded font-bold text-dar-hijama-green-deep hover:underline">
+                            كل المقالات
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                        </a>
+                    </div>
+                    <div class="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+                        @foreach ($latestArticles as $article)
+                            @include('dar-hijama::public.partials.article-card', ['article' => $article])
+                        @endforeach
+                    </div>
                 </div>
             </section>
         @endif
 
-        {{-- FAQ --}}
-        <section id="faq" class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
-            <div class="mx-auto max-w-2xl text-center">
-                <span class="text-xs font-bold uppercase tracking-widest text-dar-hijama-turquoise">الأسئلة الشائعة</span>
-                <h2 class="mt-2 text-3xl font-extrabold text-dar-hijama-ink">أسئلة يتكرر طرحها</h2>
-            </div>
-            <div class="mt-10 divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white" x-data="{ open: null }">
-                @foreach ([
-                    ['q' => 'ما الفرق بين الحجامة الجافة والرطبة؟', 'a' => 'الحجامة الجافة تعتمد على الشفط فقط دون سحب الدم، أما الرطبة فتتضمن سحب الدم الراكد بتقنية معقّمة. نوضّح لك الأنسب لحالتك خلال الاستشارة الأولية.'],
-                    ['q' => 'هل تصلون إلى كل مناطق تونس الكبرى؟', 'a' => 'نغطي مناطق واسعة بزيارة منزلية. راسلنا عبر واتساب لتأكيد التغطية في منطقتك بالتحديد.'],
-                    ['q' => 'كيف يتم تأكيد الموعد؟', 'a' => 'بعد التواصل عبر واتساب، يقوم فريقنا بتأكيد التاريخ والساعة معك مباشرة قبل الزيارة.'],
-                    ['q' => 'هل بياناتي وملفي الصحي محفوظان بخصوصية؟', 'a' => 'نعم، تُحفظ بيانات كل مريض ضمن صلاحيات وصول محدودة داخل النظام، ولا تُشارك خارج فريق المتابعة.'],
-                ] as $i => $item)
-                    <div>
-                        <button
-                            type="button"
-                            @click="open = open === {{ $i }} ? null : {{ $i }}"
-                            :aria-expanded="open === {{ $i }}"
-                            class="flex w-full items-center justify-between px-6 py-4 text-right font-semibold text-dar-hijama-ink"
-                        >
-                            {{ $item['q'] }}
-                            <span x-text="open === {{ $i }} ? '−' : '+'" class="text-dar-hijama-turquoise"></span>
-                        </button>
-                        <div x-show="open === {{ $i }}" x-cloak class="px-6 pb-4 text-sm leading-6 text-gray-600">
-                            {{ $item['a'] }}
-                        </div>
+        {{-- 7. FAQ --}}
+        <section id="faq" class="bg-dar-hijama-mist" aria-labelledby="faq-title">
+            <div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-12 lg:py-28">
+                <div class="dh-reveal lg:col-span-4">
+                    <p class="dh-eyebrow">الأسئلة الشائعة</p>
+                    <h2 id="faq-title" class="mt-3 text-3xl font-black text-dar-hijama-ink sm:text-5xl">أسئلة يتكرر طرحها</h2>
+                    <p class="mt-6 leading-8 text-gray-600">
+                        لم تجد إجابتك؟
+                        <a href="{{ $whatsappContactUrl }}" target="_blank" rel="noopener" x-data="whatsappCta('faq')" @click="track()" class="dh-focus rounded font-bold text-dar-hijama-green-deep underline-offset-4 hover:underline">راسلنا عبر واتساب</a>
+                    </p>
+                </div>
+                <div class="lg:col-span-8" x-data="{ open: null }">
+                    <div class="divide-y divide-dar-hijama-ink/10 rounded-3xl border border-dar-hijama-ink/10 bg-white px-2 sm:px-4">
+                        @foreach ([
+                            ['q' => 'ما الفرق بين الحجامة الجافة والرطبة؟', 'a' => 'الحجامة الجافة تعتمد على الشفط فقط دون سحب الدم، أما الرطبة فتتضمن سحب الدم الراكد بتقنية معقّمة. نوضّح لك الأنسب لحالتك خلال الاستشارة الأولية.'],
+                            ['q' => 'هل تصلون إلى كل مناطق تونس الكبرى؟', 'a' => 'نغطي مناطق واسعة بزيارة منزلية. راسلنا عبر واتساب لتأكيد التغطية في منطقتك بالتحديد.'],
+                            ['q' => 'كيف يتم تأكيد الموعد؟', 'a' => 'بعد التواصل عبر واتساب، يقوم فريقنا بتأكيد التاريخ والساعة معك مباشرة قبل الزيارة.'],
+                            ['q' => 'هل بياناتي وملفي الصحي محفوظان بخصوصية؟', 'a' => 'نعم، تُحفظ بيانات كل مريض ضمن صلاحيات وصول محدودة داخل النظام، ولا تُشارك خارج فريق المتابعة.'],
+                        ] as $i => $item)
+                            <div>
+                                <h3>
+                                    <button
+                                        type="button"
+                                        id="faq-q-{{ $i }}"
+                                        aria-controls="faq-a-{{ $i }}"
+                                        aria-expanded="false"
+                                        :aria-expanded="open === {{ $i }} ? 'true' : 'false'"
+                                        @click="open = open === {{ $i }} ? null : {{ $i }}"
+                                        class="dh-focus flex w-full items-center justify-between gap-6 rounded-2xl px-4 py-5 text-start text-lg font-bold text-dar-hijama-ink"
+                                    >
+                                        <span>{{ $item['q'] }}</span>
+                                        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-dar-hijama-mint text-dar-hijama-green-deep transition duration-300" :class="open === {{ $i }} && 'rotate-45'" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                                        </span>
+                                    </button>
+                                </h3>
+                                <div id="faq-a-{{ $i }}" role="region" aria-labelledby="faq-q-{{ $i }}" x-show="open === {{ $i }}" x-cloak x-transition.opacity class="px-4 pb-6 leading-8 text-gray-600">
+                                    {{ $item['a'] }}
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
             </div>
         </section>
 
-        {{-- CONTACT / CTA --}}
-        <section id="contact" class="border-t border-gray-100 bg-gradient-to-l from-dar-hijama-green to-dar-hijama-turquoise">
-            <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-14 text-white">
-                <div>
-                    <h2 class="text-2xl font-extrabold">جاهزون للتواصل معك</h2>
-                    <p class="mt-2 max-w-md text-white/90">راسلنا عبر واتساب لتحديد موعدك أو الاستفسار عن خدماتنا.</p>
+        {{-- 8. FINAL CTA --}}
+        <section id="contact" class="px-5 py-20 sm:px-8 lg:py-28" aria-labelledby="cta-title">
+            <div class="dh-reveal dh-cta-bg relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-dar-hijama-green/15 px-6 py-16 text-center sm:px-12 sm:py-20">
+                <img src="{{ asset('images/brand/dar-hijama-piste1-icone.svg') }}" alt="" width="320" height="320" loading="lazy" class="pointer-events-none absolute -bottom-16 -start-16 h-80 w-80 opacity-[0.06]">
+                <h2 id="cta-title" class="relative text-3xl font-black text-dar-hijama-ink sm:text-5xl">جاهز لحجز موعدك؟</h2>
+                <p class="relative mx-auto mt-5 max-w-xl text-lg leading-8 text-gray-600">الحجامة المنزلية في تونس الكبرى بمواعيد منظمة.</p>
+                <div class="relative mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+                    <a
+                        href="{{ $whatsappBookingUrl }}"
+                        target="_blank" rel="noopener"
+                        x-data="whatsappCta('final')" @click="track()"
+                        class="dh-btn dh-btn-primary px-10 py-4 text-lg"
+                    >احجز موعدك</a>
+                    <a
+                        href="{{ $whatsappContactUrl }}"
+                        target="_blank" rel="noopener"
+                        x-data="whatsappCta('final-contact')" @click="track()"
+                        class="dh-btn dh-btn-secondary px-8 py-4 text-lg"
+                    >
+                        @include('dar-hijama::public.partials.icon-chat', ['class' => 'h-5 w-5 text-dar-hijama-green-deep'])
+                        واتساب
+                    </a>
                 </div>
-                <a
-                    href="{{ $whatsappBookingUrl }}"
-                    target="_blank" rel="noopener"
-                    x-data="whatsappCta('contact')" @click="track()"
-                    class="rounded-lg bg-white px-6 py-3 font-bold text-dar-hijama-green transition hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-dar-hijama-green"
-                >
-                    تواصل عبر واتساب
-                </a>
             </div>
         </section>
     </main>
 
-    {{-- FOOTER --}}
-    <footer class="border-t border-gray-100 bg-white">
-        <div class="mx-auto max-w-6xl px-6 py-10">
-            <div class="flex flex-wrap items-center justify-between gap-6">
-                <a href="#main" class="flex items-center gap-2">
-                    <img src="{{ asset('images/brand/dar-hijama-piste1-icone.svg') }}" alt="شعار دار الحجامة" class="h-7 w-7">
-                    <span class="font-bold text-dar-hijama-ink">دار الحجامة</span>
-                </a>
-                <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500" aria-label="روابط الفوتر">
-                    <a href="#services" class="hover:text-dar-hijama-green">خدماتنا</a>
-                    <a href="{{ route('dar-hijama.articles.index') }}" class="hover:text-dar-hijama-green">المقالات</a>
-                    <a href="#faq" class="hover:text-dar-hijama-green">الأسئلة الشائعة</a>
-                    <a href="{{ route('filament.admin.auth.login') }}" class="hover:text-dar-hijama-green">دخول فريق العمل</a>
-                </nav>
-            </div>
-            <p class="mt-8 text-xs text-gray-400">© {{ now()->year }} دار الحجامة. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
+    @include('dar-hijama::public.partials.footer')
+    @include('dar-hijama::public.partials.mobile-cta')
 </body>
 </html>
