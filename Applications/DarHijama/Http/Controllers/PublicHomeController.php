@@ -2,6 +2,7 @@
 
 namespace Applications\DarHijama\Http\Controllers;
 
+use Applications\DarHijama\Domain\Article;
 use Illuminate\View\View;
 use Mythos\Core\WhatsApp\WhatsAppLinkBuilder;
 
@@ -13,6 +14,12 @@ class PublicHomeController
             'whatsappBookingUrl' => WhatsAppLinkBuilder::make()->link(
                 'السلام عليكم، أرغب في حجز موعد حجامة في دار الحجامة.'
             ),
+            'latestArticles' => Article::query()
+                ->published()
+                ->with('category')
+                ->orderByDesc('published_at')
+                ->limit(3)
+                ->get(),
         ]);
     }
 }

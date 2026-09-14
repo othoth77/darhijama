@@ -8,10 +8,14 @@ use Applications\DarHijama\Application\Services\PatientService;
 use Applications\DarHijama\Domain\AppointmentStatus;
 use Applications\DarHijama\Domain\Patient;
 use Applications\DarHijama\Domain\Practitioner;
+use Applications\DarHijama\Filament\Resources\ArticleCategoryResource;
+use Applications\DarHijama\Filament\Resources\ArticleResource;
+use Applications\DarHijama\Filament\Resources\ArticleTagResource;
 use Applications\DarHijama\Filament\Resources\AppointmentResource;
 use Applications\DarHijama\Filament\Resources\PatientResource;
 use Applications\DarHijama\Filament\Resources\PractitionerResource;
 use Applications\DarHijama\Filament\Resources\PractitionerScheduleResource;
+use Applications\DarHijama\Filament\Widgets\ArticlesOverview;
 use Applications\DarHijama\Filament\Widgets\OperationsOverview;
 use Carbon\CarbonImmutable;
 use Filament\Facades\Filament;
@@ -35,15 +39,21 @@ class WorkflowTest extends TestCase
         $manifest = $registry->find('dar-hijama');
 
         $this->assertNotNull($manifest);
-        $this->assertCount(23, $registry->permissions('dar-hijama'));
+        $this->assertCount(24, $registry->permissions('dar-hijama'));
         $this->assertTrue(Schema::hasTable('dar_hijama_appointment_transitions'));
         $this->assertTrue(Schema::hasTable('dar_hijama_access_logs'));
+        $this->assertTrue(Schema::hasTable('dar_hijama_articles'));
         $resources = Filament::getPanel('admin')->getResources();
         $this->assertContains(PatientResource::class, $resources);
         $this->assertContains(PractitionerResource::class, $resources);
         $this->assertContains(AppointmentResource::class, $resources);
         $this->assertContains(PractitionerScheduleResource::class, $resources);
-        $this->assertContains(OperationsOverview::class, Filament::getPanel('admin')->getWidgets());
+        $this->assertContains(ArticleResource::class, $resources);
+        $this->assertContains(ArticleCategoryResource::class, $resources);
+        $this->assertContains(ArticleTagResource::class, $resources);
+        $widgets = Filament::getPanel('admin')->getWidgets();
+        $this->assertContains(OperationsOverview::class, $widgets);
+        $this->assertContains(ArticlesOverview::class, $widgets);
         $this->get(route('dar-hijama.dashboard'))->assertRedirect();
 
         $user = User::factory()->create();

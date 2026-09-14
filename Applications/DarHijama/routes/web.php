@@ -1,12 +1,14 @@
 <?php
 
 use Applications\DarHijama\Http\Controllers\AppointmentController;
+use Applications\DarHijama\Http\Controllers\ArticleController;
 use Applications\DarHijama\Http\Controllers\DashboardController;
 use Applications\DarHijama\Http\Controllers\HealthController;
 use Applications\DarHijama\Http\Controllers\PatientController;
 use Applications\DarHijama\Http\Controllers\PractitionerAvailabilityController;
 use Applications\DarHijama\Http\Controllers\PractitionerController;
 use Applications\DarHijama\Http\Controllers\PublicHomeController;
+use Applications\DarHijama\Http\Controllers\SeoController;
 use Applications\DarHijama\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Middleware\PermissionMiddleware;
@@ -18,6 +20,23 @@ Route::domain(config('applications.dar-hijama.public_hosts.primary'))
 Route::domain(config('applications.dar-hijama.public_hosts.www'))
     ->get('/', PublicHomeController::class)
     ->name('dar-hijama.public.home.www');
+
+// Domain-scoped so these never collide with Modules/Landing's shared
+// /sitemap.xml and /robots.txt (used by other applications on this same
+// codebase, e.g. Notre Jour) — see SeoController's docblock.
+Route::domain(config('applications.dar-hijama.public_hosts.primary'))->group(function (): void {
+    Route::get('/articles', [ArticleController::class, 'index'])
+        ->name('dar-hijama.articles.index');
+    Route::get('/articles/category/{category:slug}', [ArticleController::class, 'category'])
+        ->name('dar-hijama.articles.category');
+    Route::get('/articles/{slug}', [ArticleController::class, 'show'])
+        ->name('dar-hijama.articles.show');
+
+    Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])
+        ->name('dar-hijama.sitemap');
+    Route::get('/robots.txt', [SeoController::class, 'robots'])
+        ->name('dar-hijama.robots');
+});
 
 Route::get('/mythos/dar-hijama/health', [HealthController::class, 'live'])
     ->name('mythos.dar-hijama.health');

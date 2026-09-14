@@ -3,23 +3,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="دار الحجامة — رعاية مهنية ومواعيد منظمة للحجامة في تونس، بزيارة منزلية وفريق مختص.">
-    <meta name="keywords" content="حجامة, دار الحجامة, حجامة تونس, حجامة في المنزل, حجامة نبوية">
+    <meta name="description" content="حجامة منزلية بمواعيد منظمة في تونس الكبرى (تونس، أريانة، بن عروس، منوبة). تواصل معنا عبر واتساب لحجز موعدك.">
     <meta name="robots" content="index, follow">
-    <title>دار الحجامة | رعاية مهنية ومواعيد منظمة في تونس</title>
+    <title>الحجامة المنزلية في تونس الكبرى | دار الحجامة</title>
     <link rel="canonical" href="https://{{ config('applications.dar-hijama.public_hosts.primary') }}/">
     <link rel="icon" href="{{ asset('images/brand/favicon-64.png') }}" type="image/png">
 
     {{-- Open Graph --}}
-    <meta property="og:title" content="دار الحجامة | رعاية مهنية ومواعيد منظمة في تونس">
-    <meta property="og:description" content="دار الحجامة — رعاية مهنية ومواعيد منظمة للحجامة في تونس، بزيارة منزلية وفريق مختص.">
+    <meta property="og:title" content="الحجامة المنزلية في تونس الكبرى | دار الحجامة">
+    <meta property="og:description" content="حجامة منزلية بمواعيد منظمة في تونس الكبرى. تواصل معنا عبر واتساب لحجز موعدك.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_TN">
     <meta property="og:url" content="https://{{ config('applications.dar-hijama.public_hosts.primary') }}/">
     <meta property="og:image" content="{{ asset('images/brand/dar-hijama-piste1-icone-512.png') }}">
 
-    {{-- Schema.org — LocalBusiness. Aucun avis/note inventé : uniquement des
-         faits déclaratifs (nom, description, zone de service). --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="الحجامة المنزلية في تونس الكبرى | دار الحجامة">
+    <meta name="twitter:description" content="حجامة منزلية بمواعيد منظمة في تونس الكبرى.">
+
+    {{-- Schema.org — MedicalBusiness. Only declarative, verifiable facts:
+         no invented address, opening hours, ratings or reviews. areaServed
+         lists Grand Tunis's four governorates (a real, checkable geographic
+         definition — not a coverage claim about the business). --}}
     {{-- "@@" below escapes Blade's real @context directive — a literal
          "@context" key here would otherwise be compiled as that directive
          and break the rest of the page (missing @endcontext). --}}
@@ -28,9 +33,16 @@
         "@@context": "https://schema.org",
         "@@type": "MedicalBusiness",
         "name": "دار الحجامة",
-        "description": "رعاية مهنية ومواعيد منظمة للحجامة في تونس، بزيارة منزلية.",
+        "description": "حجامة منزلية بمواعيد منظمة في تونس الكبرى.",
         "url": "https://{{ config('applications.dar-hijama.public_hosts.primary') }}/",
-        "areaServed": "تونس"
+        "logo": "{{ asset('images/brand/dar-hijama-piste1-icone-512.png') }}",
+        "telephone": "+{{ config('whatsapp.phone_e164') }}",
+        "areaServed": [
+            {"@@type": "AdministrativeArea", "name": "تونس"},
+            {"@@type": "AdministrativeArea", "name": "أريانة"},
+            {"@@type": "AdministrativeArea", "name": "بن عروس"},
+            {"@@type": "AdministrativeArea", "name": "منوبة"}
+        ]
     }
     </script>
 
@@ -55,7 +67,7 @@
             </a>
             <nav class="hidden items-center gap-6 text-sm font-semibold text-gray-600 md:flex" aria-label="التنقّل الرئيسي">
                 <a href="#services" class="hover:text-dar-hijama-green">خدماتنا</a>
-                <a href="#how-it-works" class="hover:text-dar-hijama-green">كيف نعمل</a>
+                <a href="{{ route('dar-hijama.articles.index') }}" class="hover:text-dar-hijama-green">المقالات</a>
                 <a href="#faq" class="hover:text-dar-hijama-green">الأسئلة الشائعة</a>
                 <a href="#contact" class="hover:text-dar-hijama-green">تواصل معنا</a>
             </nav>
@@ -76,14 +88,13 @@
             <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
                 <div>
                     <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1 text-xs font-bold tracking-widest text-dar-hijama-green">
-                        دار الحجامة
+                        تونس الكبرى
                     </p>
                     <h1 class="max-w-xl text-4xl font-extrabold leading-tight text-dar-hijama-ink sm:text-5xl">
-                        رعاية مهنية، متابعة واضحة، ومواعيد منظمة
+                        الحجامة المنزلية<br>في تونس الكبرى
                     </h1>
                     <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-                        دار الحجامة منصة مستقلة لإدارة خدمات الحجامة والمرضى والمواعيد،
-                        مع زيارة منزلية وفريق مختص واحترام كامل للخصوصية.
+                        حجامة منزلية بمواعيد منظمة.
                     </p>
 
                     <div class="mt-10 flex flex-wrap gap-4">
@@ -93,13 +104,13 @@
                             x-data="whatsappCta('hero')" @click="track()"
                             class="rounded-lg bg-dar-hijama-green px-6 py-3 font-bold text-white transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-dar-hijama-green focus:ring-offset-2"
                         >
-                            احجز موعدًا عبر واتساب
+                            احجز موعدك
                         </a>
                         <a
-                            href="{{ route('filament.admin.auth.login') }}"
+                            href="#contact"
                             class="rounded-lg border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-700 transition hover:border-dar-hijama-green hover:text-dar-hijama-green focus:outline-none focus:ring-2 focus:ring-dar-hijama-green focus:ring-offset-2"
                         >
-                            دخول فريق العمل
+                            تواصل معنا
                         </a>
                     </div>
                 </div>
@@ -114,29 +125,29 @@
         <section id="services" class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
             <div class="mx-auto max-w-2xl text-center">
                 <span class="text-xs font-bold uppercase tracking-widest text-dar-hijama-turquoise">خدماتنا</span>
-                <h2 class="mt-2 text-3xl font-extrabold text-dar-hijama-ink">رعاية متكاملة من أول تواصل حتى المتابعة</h2>
+                <h2 class="mt-2 text-3xl font-extrabold text-dar-hijama-ink">حجامة منزلية في تونس الكبرى</h2>
             </div>
             <div class="mt-12 grid gap-6 sm:grid-cols-3">
                 <article class="rounded-xl border border-gray-200 bg-white p-6">
                     <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-green-50 text-dar-hijama-green">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                     </div>
-                    <h3 class="font-bold text-dar-hijama-ink">مواعيد منظمة تناسبك</h3>
-                    <p class="mt-2 text-sm leading-6 text-gray-600">تحديد موعد الاستشارة الأولية أو جلسة الحجامة بما يناسب وقتك، ومتابعة الحجز من التأكيد حتى الزيارة.</p>
+                    <h3 class="font-bold text-dar-hijama-ink">مواعيد منظمة</h3>
+                    <p class="mt-2 text-sm leading-6 text-gray-600">حجز وتأكيد الموعد بما يناسب وقتك.</p>
                 </article>
                 <article class="rounded-xl border border-gray-200 bg-white p-6">
                     <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-green-50 text-dar-hijama-green">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7M5 10v10h14V10"/></svg>
                     </div>
                     <h3 class="font-bold text-dar-hijama-ink">زيارة منزلية</h3>
-                    <p class="mt-2 text-sm leading-6 text-gray-600">يصلك فريقنا في منزلك بمعدات معقّمة أحادية الاستخدام، دون الحاجة للتنقّل.</p>
+                    <p class="mt-2 text-sm leading-6 text-gray-600">يصلك فريقنا في منزلك بمعدات معقّمة أحادية الاستخدام.</p>
                 </article>
                 <article class="rounded-xl border border-gray-200 bg-white p-6">
                     <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-green-50 text-dar-hijama-green">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                    <h3 class="font-bold text-dar-hijama-ink">متابعة ومصداقية</h3>
-                    <p class="mt-2 text-sm leading-6 text-gray-600">توثيق كل جلسة ومتابعة ما بعدها ضمن ملف خاص يحترم خصوصية بياناتك.</p>
+                    <h3 class="font-bold text-dar-hijama-ink">خصوصية تامة</h3>
+                    <p class="mt-2 text-sm leading-6 text-gray-600">بياناتك محفوظة ضمن صلاحيات وصول محدودة.</p>
                 </article>
             </div>
         </section>
@@ -152,26 +163,56 @@
                     <li class="relative rounded-xl bg-white p-6 shadow-sm">
                         <span class="text-sm font-black text-dar-hijama-turquoise">01</span>
                         <h3 class="mt-2 font-bold text-dar-hijama-ink">تواصل معنا</h3>
-                        <p class="mt-2 text-sm leading-6 text-gray-600">تراسلنا عبر واتساب لتحديد احتياجك.</p>
+                        <p class="mt-2 text-sm leading-6 text-gray-600">عبر واتساب.</p>
                     </li>
                     <li class="relative rounded-xl bg-white p-6 shadow-sm">
                         <span class="text-sm font-black text-dar-hijama-turquoise">02</span>
                         <h3 class="mt-2 font-bold text-dar-hijama-ink">استشارة أولية</h3>
-                        <p class="mt-2 text-sm leading-6 text-gray-600">نفهم حالتك ونحدد نوع الجلسة الأنسب لك.</p>
+                        <p class="mt-2 text-sm leading-6 text-gray-600">نحدد نوع الجلسة الأنسب.</p>
                     </li>
                     <li class="relative rounded-xl bg-white p-6 shadow-sm">
                         <span class="text-sm font-black text-dar-hijama-turquoise">03</span>
                         <h3 class="mt-2 font-bold text-dar-hijama-ink">جلسة الحجامة</h3>
-                        <p class="mt-2 text-sm leading-6 text-gray-600">يصلك فريقنا في موعده لإجراء الجلسة في منزلك.</p>
+                        <p class="mt-2 text-sm leading-6 text-gray-600">في موعدها، بمنزلك.</p>
                     </li>
                     <li class="relative rounded-xl bg-white p-6 shadow-sm">
                         <span class="text-sm font-black text-dar-hijama-turquoise">04</span>
                         <h3 class="mt-2 font-bold text-dar-hijama-ink">متابعة</h3>
-                        <p class="mt-2 text-sm leading-6 text-gray-600">نتابع معك بعد الجلسة ونحدد الخطوة التالية إن لزم.</p>
+                        <p class="mt-2 text-sm leading-6 text-gray-600">بعد الجلسة عند الحاجة.</p>
                     </li>
                 </ol>
             </div>
         </section>
+
+        {{-- LATEST ARTICLES (internal linking) --}}
+        @if ($latestArticles->isNotEmpty())
+            <section class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+                <div class="mx-auto max-w-2xl text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest text-dar-hijama-turquoise">مقالات</span>
+                    <h2 class="mt-2 text-3xl font-extrabold text-dar-hijama-ink">أحدث المقالات</h2>
+                </div>
+                <div class="mt-12 grid gap-6 sm:grid-cols-3">
+                    @foreach ($latestArticles as $article)
+                        <a
+                            href="{{ route('dar-hijama.articles.show', $article) }}"
+                            class="block rounded-xl border border-gray-200 bg-white p-6 hover:border-dar-hijama-green"
+                        >
+                            @if ($article->category)
+                                <span class="text-xs font-bold uppercase tracking-widest text-dar-hijama-turquoise">
+                                    {{ $article->category->name }}
+                                </span>
+                            @endif
+                            <h3 class="mt-2 font-bold text-dar-hijama-ink">{{ $article->title }}</h3>
+                        </a>
+                    @endforeach
+                </div>
+                <div class="mt-8 text-center">
+                    <a href="{{ route('dar-hijama.articles.index') }}" class="font-semibold text-dar-hijama-green hover:underline">
+                        كل المقالات ←
+                    </a>
+                </div>
+            </section>
+        @endif
 
         {{-- FAQ --}}
         <section id="faq" class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
@@ -233,7 +274,7 @@
                 </a>
                 <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500" aria-label="روابط الفوتر">
                     <a href="#services" class="hover:text-dar-hijama-green">خدماتنا</a>
-                    <a href="#how-it-works" class="hover:text-dar-hijama-green">كيف نعمل</a>
+                    <a href="{{ route('dar-hijama.articles.index') }}" class="hover:text-dar-hijama-green">المقالات</a>
                     <a href="#faq" class="hover:text-dar-hijama-green">الأسئلة الشائعة</a>
                     <a href="{{ route('filament.admin.auth.login') }}" class="hover:text-dar-hijama-green">دخول فريق العمل</a>
                 </nav>

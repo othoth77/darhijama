@@ -38,7 +38,8 @@
         "dar-hijama.appointments.view-private-notes",
         "dar-hijama.practitioner-availability.manage",
         "dar-hijama.reports.view",
-        "dar-hijama.patients.export"
+        "dar-hijama.patients.export",
+        "dar-hijama.articles.manage"
     ],
     "routes": [
         {
