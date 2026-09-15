@@ -14,8 +14,12 @@ class PublicHomeController
             'whatsappBookingUrl' => WhatsAppLinkBuilder::make()->link(
                 'السلام عليكم، أرغب في حجز موعد حجامة في دار الحجامة.'
             ),
+            'whatsappContactUrl' => WhatsAppLinkBuilder::make()->link(
+                'السلام عليكم، لدي استفسار حول خدمة الحجامة المنزلية.'
+            ),
             'latestArticles' => Article::query()
                 ->published()
+                ->where('noindex', false)
                 ->with('category')
                 ->orderByDesc('published_at')
                 ->limit(3)

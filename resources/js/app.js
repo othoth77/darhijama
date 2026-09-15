@@ -34,5 +34,31 @@ Alpine.data('countdown', (targetIso) => ({
     },
 }));
 
+// Révélation au défilement des vues dar-hijama::public (sans dépendance). Les
+// éléments déjà visibles au chargement sont marqués avant d'activer le masquage,
+// pour éviter tout clignotement ou décalage du contenu au-dessus de la ligne de flottaison.
+const revealTargets = document.querySelectorAll('.dh-reveal');
+if (revealTargets.length > 0) {
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -8% 0px' });
+
+        revealTargets.forEach((element) => {
+            if (element.getBoundingClientRect().top < window.innerHeight) {
+                element.classList.add('is-visible');
+            } else {
+                observer.observe(element);
+            }
+        });
+        document.documentElement.classList.add('dh-motion');
+    }
+}
+
 window.Alpine = Alpine;
 Alpine.start();
