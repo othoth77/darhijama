@@ -77,6 +77,20 @@ class PublicHomePiste15Test extends TestCase
         }
     }
 
+    public function test_whatsapp_links_and_schema_use_the_official_number(): void
+    {
+        foreach ([self::HOME, 'http://darhijama.tn/articles'] as $url) {
+            $content = $this->get($url)->assertOk()->getContent();
+
+            $this->assertGreaterThan(0, substr_count($content, 'href="https://wa.me/21698999660?'));
+            $this->assertSame(substr_count($content, 'href="https://wa.me/'), substr_count($content, 'href="https://wa.me/21698999660?'));
+            $this->assertStringNotContainsString('21621821921', $content);
+        }
+
+        preg_match('#<script type="application/ld\+json">(.*?)</script>#s', $this->get(self::HOME)->getContent(), $matches);
+        $this->assertSame('+21698999660', json_decode($matches[1] ?? '', true)['telephone'] ?? null);
+    }
+
     public function test_booking_and_contact_ctas_are_whatsapp_links(): void
     {
         $content = $this->get(self::HOME)->getContent();

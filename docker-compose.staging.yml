@@ -48,11 +48,8 @@ x-app-environment: &app-environment
   MEDIA_VISIBILITY: private
   MAIL_MAILER: log
   DAR_HIJAMA_NOTIFICATION_CHANNELS: database
-  # Dar Hijama's own WhatsApp CTA number/message — overrides config/whatsapp.php's
-  # generic Notre-Jour-flavoured default (see CTR-1 in othoth77/othdesign).
-  # The number already appears elsewhere in this app (dar-hijama::public.home's
-  # previous tel: link) and in the archived pre-Laravel darhijama.tn site.
-  WHATSAPP_PHONE_E164: ${WHATSAPP_PHONE_E164:-21621821921}
+  # Dar Hijama's official WhatsApp number (00216 98 999 660), E.164 without "+".
+  WHATSAPP_PHONE_E164: ${WHATSAPP_PHONE_E164:-21698999660}
   WHATSAPP_DEFAULT_MESSAGE: ${WHATSAPP_DEFAULT_MESSAGE:-السلام عليكم، أرغب في حجز موعد حجامة في دار الحجامة.}
   ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL is required}
   ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD is required}
