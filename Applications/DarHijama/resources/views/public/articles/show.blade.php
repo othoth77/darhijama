@@ -33,7 +33,7 @@
                 src="{{ asset('storage/'.$article->featured_image) }}"
                 alt="{{ $article->featured_image_alt ?: $article->title }}"
                 width="768" height="420"
-                class="mx-auto mt-6 max-w-3xl rounded-xl object-cover px-6"
+                class="mx-auto mt-6 w-full max-w-3xl rounded-xl object-cover px-6"
             >
         @endif
 
