@@ -26,17 +26,6 @@
             <h1 class="text-3xl font-extrabold leading-tight text-dar-hijama-ink sm:text-4xl">
                 {{ $article->title }}
             </h1>
-            <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500">
-                <span>{{ $article->author?->name ?? 'دار الحجامة' }}</span>
-                <time datetime="{{ $article->published_at?->toIso8601String() }}">
-                    نُشر في {{ $article->published_at?->locale('ar')->translatedFormat('j F Y') }}
-                </time>
-                @if ($article->updated_at && $article->published_at && $article->updated_at->gt($article->published_at->addHour()))
-                    <time datetime="{{ $article->updated_at->toIso8601String() }}">
-                        · آخر تحديث {{ $article->updated_at->locale('ar')->translatedFormat('j F Y') }}
-                    </time>
-                @endif
-            </div>
         </header>
 
         @if ($article->featured_image)
