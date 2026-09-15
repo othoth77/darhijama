@@ -72,7 +72,7 @@
                                 <p class="mt-2 flex-1 text-sm leading-6 text-gray-600">{{ $article->excerpt }}</p>
                             @endif
                             <time datetime="{{ $article->published_at?->toDateString() }}" class="mt-4 text-xs text-gray-400">
-                                {{ $article->published_at?->translatedFormat('d F Y') }}
+                                {{ $article->published_at?->locale('ar')->translatedFormat('j F Y') }}
                             </time>
                         </div>
                     </article>

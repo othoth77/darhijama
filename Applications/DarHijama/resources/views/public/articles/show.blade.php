@@ -29,11 +29,11 @@
             <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500">
                 <span>{{ $article->author?->name ?? 'دار الحجامة' }}</span>
                 <time datetime="{{ $article->published_at?->toIso8601String() }}">
-                    نُشر في {{ $article->published_at?->translatedFormat('d F Y') }}
+                    نُشر في {{ $article->published_at?->locale('ar')->translatedFormat('j F Y') }}
                 </time>
                 @if ($article->updated_at && $article->published_at && $article->updated_at->gt($article->published_at->addHour()))
                     <time datetime="{{ $article->updated_at->toIso8601String() }}">
-                        · آخر تحديث {{ $article->updated_at->translatedFormat('d F Y') }}
+                        · آخر تحديث {{ $article->updated_at->locale('ar')->translatedFormat('j F Y') }}
                     </time>
                 @endif
             </div>
@@ -63,13 +63,14 @@
         @endif
 
         <div class="mx-auto max-w-3xl px-6 pb-10">
-            <div class="flex flex-col items-start gap-4 rounded-xl bg-gradient-to-l from-dar-hijama-green to-dar-hijama-turquoise p-6 text-white sm:flex-row sm:items-center sm:justify-between">
-                <p class="font-bold">هل لديك سؤال أو تريد حجز موعد؟</p>
+            <div class="dh-cta-bg flex flex-col items-start gap-5 rounded-3xl border border-dar-hijama-green/15 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+                <p class="text-lg font-bold text-dar-hijama-ink">هل لديك سؤال أو تريد حجز موعد؟</p>
                 <a
                     href="{{ $whatsappBookingUrl }}"
                     target="_blank" rel="noopener"
-                    class="rounded-lg bg-white px-5 py-2.5 font-bold text-dar-hijama-green hover:bg-gray-100"
-                >تواصل عبر واتساب</a>
+                    x-data="whatsappCta('article')" @click="track()"
+                    class="dh-btn dh-btn-primary"
+                >احجز موعدك</a>
             </div>
         </div>
     </article>
@@ -84,7 +85,7 @@
                             href="{{ route('dar-hijama.articles.show', $relatedArticle) }}"
                             class="block rounded-xl border border-gray-200 bg-white p-5 hover:border-dar-hijama-green"
                         >
-                            <span class="text-xs font-semibold text-dar-hijama-turquoise">
+                            <span class="text-xs font-semibold text-dar-hijama-teal-deep">
                                 {{ $relatedArticle->category?->name }}
                             </span>
                             <h3 class="mt-1 font-bold text-dar-hijama-ink">{{ $relatedArticle->title }}</h3>
