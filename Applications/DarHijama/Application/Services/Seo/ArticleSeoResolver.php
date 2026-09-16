@@ -4,6 +4,7 @@ namespace Applications\DarHijama\Application\Services\Seo;
 
 use Applications\DarHijama\Domain\Article;
 use DOMDocument;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -227,8 +228,15 @@ class ArticleSeoResolver
         return rtrim((string) config('app.url'), '/').'/articles/'.$slug;
     }
 
+    /**
+     * Featured/OG images live on the `public` disk (see ArticleResource's
+     * FileUpload), which is served from /storage — asset() would point at the
+     * document root instead and every social preview would 404.
+     */
     private function assetUrl(string $path): string
     {
-        return Str::startsWith($path, ['http://', 'https://']) ? $path : asset($path);
+        return Str::startsWith($path, ['http://', 'https://'])
+            ? $path
+            : Storage::disk('public')->url($path);
     }
 }
