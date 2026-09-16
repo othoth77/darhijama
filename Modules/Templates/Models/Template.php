@@ -12,6 +12,19 @@ use Modules\Orders\Models\Order;
 use Modules\Templates\Database\Factories\TemplateFactory;
 use Mythos\Core\Media\Models\Media;
 
+/**
+ * Columns of the `templates` table (2026_07_18_100002_create_templates_table).
+ *
+ * @property int $id
+ * @property int $template_category_id
+ * @property string $name
+ * @property string $slug
+ * @property string|null $description
+ * @property string|null $preview_image_path
+ * @property array<string, mixed>|null $demo_data
+ * @property bool $is_active
+ * @property int $order
+ */
 class Template extends Model
 {
     /** @use HasFactory<TemplateFactory> */

@@ -8,6 +8,7 @@ use Applications\DarHijama\Domain\ArticleCategory;
 use Applications\DarHijama\Domain\ArticleRedirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Mythos\Core\WhatsApp\WhatsAppLinkBuilder;
 use Symfony\Component\HttpFoundation\Response;
@@ -213,7 +214,7 @@ class ArticleController
         ];
     }
 
-    private function categoriesWithPublishedArticles(): \Illuminate\Support\Collection
+    private function categoriesWithPublishedArticles(): Collection
     {
         return ArticleCategory::query()
             ->whereHas('articles', fn ($q) => $q->published())
