@@ -5,9 +5,8 @@ namespace Applications\DarHijama\Tests\Feature;
 use Applications\DarHijama\Application\Services\Seo\ArticleSeoResolver;
 use Applications\DarHijama\Domain\Article;
 use Applications\DarHijama\Domain\ArticleCategory;
-use Applications\DarHijama\Domain\ArticleRedirect;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Validation\ValidationException;
 use Mythos\Core\Identity\Models\User;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -67,7 +66,7 @@ class ArticleSeoTest extends TestCase
     {
         Article::factory()->create(['slug' => 'duplicate-slug']);
 
-        $this->expectException(\Illuminate\Database\QueryException::class);
+        $this->expectException(QueryException::class);
         Article::factory()->create(['slug' => 'duplicate-slug']);
     }
 

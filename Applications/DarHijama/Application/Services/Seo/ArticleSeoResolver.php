@@ -168,7 +168,7 @@ class ArticleSeoResolver
             return $stats;
         }
 
-        $dom = new DOMDocument();
+        $dom = new DOMDocument;
         libxml_use_internal_errors(true);
         $dom->loadHTML(
             '<?xml encoding="utf-8" ?><div>'.$html.'</div>',

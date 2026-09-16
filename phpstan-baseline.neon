@@ -367,18 +367,6 @@ parameters:
 			path: Modules/Invitations/Tests/Feature/SubmitRsvpServiceTest.php
 
 		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$name\.$#'
-			identifier: property.notFound
-			count: 1
-			path: Modules/Landing/Tests/Feature/LandingProductionCompletionTest.php
-
-		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$slug\.$#'
-			identifier: property.notFound
-			count: 3
-			path: Modules/Landing/Tests/Feature/LandingProductionCompletionTest.php
-
-		-
 			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
 			identifier: larastan.noEnvCallsOutsideOfConfig
 			count: 3
@@ -487,12 +475,6 @@ parameters:
 			path: Modules/Orders/Tests/Unit/OrderAmountValidationTest.php
 
 		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$name\.$#'
-			identifier: property.notFound
-			count: 1
-			path: Modules/Templates/Http/Controllers/TemplateCatalogController.php
-
-		-
 			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:active\(\)\.$#'
 			identifier: method.notFound
 			count: 1
@@ -553,30 +535,6 @@ parameters:
 			path: Modules/Templates/Services/EloquentTemplateCatalog.php
 
 		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$description\.$#'
-			identifier: property.notFound
-			count: 1
-			path: Modules/Templates/Services/EloquentTemplateCatalog.php
-
-		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$name\.$#'
-			identifier: property.notFound
-			count: 1
-			path: Modules/Templates/Services/EloquentTemplateCatalog.php
-
-		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$preview_image_path\.$#'
-			identifier: property.notFound
-			count: 1
-			path: Modules/Templates/Services/EloquentTemplateCatalog.php
-
-		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$slug\.$#'
-			identifier: property.notFound
-			count: 2
-			path: Modules/Templates/Services/EloquentTemplateCatalog.php
-
-		-
 			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) expects callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: App\\Contracts\\Templates\\TemplateSummary, Closure\(Modules\\Templates\\Models\\Template\)\: App\\Contracts\\Templates\\TemplateSummary given\.$#'
 			identifier: argument.type
 			count: 2
@@ -587,24 +545,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: Modules/Templates/Services/EloquentTemplateCatalog.php
-
-		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$name\.$#'
-			identifier: property.notFound
-			count: 1
-			path: Modules/Templates/Tests/Feature/PublicTemplateCatalogTest.php
-
-		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$preview_image_path\.$#'
-			identifier: property.notFound
-			count: 1
-			path: Modules/Templates/Tests/Feature/PublicTemplateCatalogTest.php
-
-		-
-			message: '#^Access to an undefined property Modules\\Templates\\Models\\Template\:\:\$slug\.$#'
-			identifier: property.notFound
-			count: 2
-			path: Modules/Templates/Tests/Feature/PublicTemplateDetailsTest.php
 
 		-
 			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'

@@ -111,6 +111,17 @@ jobs:
           php artisan db:seed --force
           php artisan dar-hijama:install
 
+      # Public pages render @vite assets: without a build they throw
+      # ViteManifestNotFoundException and every page test fails with 500.
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
       - name: Verify Notre Jour critical workflows on MySQL
         run: php artisan test --testsuite=Modules --filter='/Invitation|Rsvp/'
 

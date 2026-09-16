@@ -4,10 +4,9 @@ namespace Applications\DarHijama\Filament\Resources;
 
 use Applications\DarHijama\Application\Services\Seo\ArticleSeoResolver;
 use Applications\DarHijama\Domain\Article;
-use Applications\DarHijama\Domain\ArticleCategory;
 use Applications\DarHijama\Domain\ArticleStatus;
-use Applications\DarHijama\Domain\ArticleTag;
 use Applications\DarHijama\Filament\Resources\ArticleResource\Pages;
+use Filament\Forms\Components\Component;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
@@ -27,6 +26,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Mythos\Core\Identity\Models\User;
 
@@ -64,7 +64,7 @@ class ArticleResource extends Resource
         ]);
     }
 
-    /** @return array<int, \Filament\Forms\Components\Component> */
+    /** @return array<int, Component> */
     private static function contentFields(): array
     {
         return [
@@ -142,7 +142,7 @@ class ArticleResource extends Resource
         ];
     }
 
-    /** @return array<int, \Filament\Forms\Components\Component> */
+    /** @return array<int, Component> */
     private static function publishingFields(): array
     {
         return [
@@ -170,7 +170,7 @@ class ArticleResource extends Resource
         ];
     }
 
-    /** @return array<int, \Filament\Forms\Components\Component> */
+    /** @return array<int, Component> */
     private static function seoFields(): array
     {
         return [
@@ -222,7 +222,7 @@ class ArticleResource extends Resource
         ];
     }
 
-    /** @return array<int, \Filament\Forms\Components\Component> */
+    /** @return array<int, Component> */
     private static function advancedSeoFields(): array
     {
         return [
@@ -274,7 +274,7 @@ class ArticleResource extends Resource
         return $article;
     }
 
-    private static function googlePreview(Get $get): \Illuminate\Support\HtmlString
+    private static function googlePreview(Get $get): HtmlString
     {
         $resolver = app(ArticleSeoResolver::class);
         $article = self::transientArticle($get);
@@ -283,7 +283,7 @@ class ArticleResource extends Resource
         $url = e($resolver->canonicalUrl($article)->value ?? config('app.url').'/articles/…');
         $description = e($resolver->metaDescription($article)->value ?? '(بدون وصف)');
 
-        return new \Illuminate\Support\HtmlString(<<<HTML
+        return new HtmlString(<<<HTML
             <div style="font-family:arial,sans-serif;max-width:560px;direction:ltr;text-align:left">
                 <div style="color:#1a0dab;font-size:18px;line-height:1.3">{$title}</div>
                 <div style="color:#006621;font-size:13px">{$url}</div>
@@ -292,7 +292,7 @@ class ArticleResource extends Resource
         HTML);
     }
 
-    private static function diagnosticsPreview(Get $get): \Illuminate\Support\HtmlString
+    private static function diagnosticsPreview(Get $get): HtmlString
     {
         $resolver = app(ArticleSeoResolver::class);
         $diagnostics = $resolver->diagnostics(self::transientArticle($get));
@@ -331,7 +331,7 @@ class ArticleResource extends Resource
 
         $items = implode('', array_map(fn (string $r) => '<li style="margin-bottom:4px">'.e($r).'</li>', $rows));
 
-        return new \Illuminate\Support\HtmlString(
+        return new HtmlString(
             '<ul style="list-style:none;padding:0;font-size:13px">'.$items.'</ul>'
         );
     }
